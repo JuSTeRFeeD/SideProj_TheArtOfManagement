@@ -51,10 +51,12 @@ namespace Project.Scripts.NodeSystem
             playerSpeakerIcon.enabled = isPlayerSpeaker;
         }
 
-        public void ShowChoices(List<string> choices, Action<int> callback)
+        public void ShowChoices(string question, List<string> choices, Action<int> callback)
         {
             speakerIcon.enabled = true;
             playerSpeakerIcon.enabled = false;
+            
+            dialogueText.text = question;
             
             for (var index = 0; index < choices.Count; index++)
             {

@@ -97,7 +97,7 @@ namespace Project.Scripts.NodeSystem
             var choiceTexts = node.choices
                 .Select(choice => choice)
                 .ToList();
-            UIDialogue.Instance.ShowChoices(choiceTexts, callbackIndex => 
+            UIDialogue.Instance.ShowChoices(node.question, choiceTexts, callbackIndex => 
             {
                 var port = node.GetPort($"choices {callbackIndex}");
                 if (!port.IsConnected) return;
