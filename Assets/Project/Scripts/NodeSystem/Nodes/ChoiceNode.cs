@@ -9,13 +9,19 @@ namespace Project.Scripts.NodeSystem.Nodes
     [NodeWidth(500)]
     public class ChoiceNode : Node
     {
-        [Input] public Node input;
+        [Input] 
+        [SerializeField] public Node input;
 
-        [TextArea] public string question;
+        [TextArea]
+        [SerializeField] private string question;
         
         [Space]
         [TextArea]
-        [Output(dynamicPortList = true)] public List<string> choices = new();
+        [Output(dynamicPortList = true)] 
+        [SerializeField] private List<string> choices = new();
+
+        public string Question => question;
+        public List<string> Choices => choices;
 
         public override object GetValue(NodePort port)
         {

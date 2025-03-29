@@ -1,6 +1,7 @@
 using System.Linq;
 using Project.Scripts.NodeSystem.Nodes;
 using Project.Scripts.NPC;
+using Project.Scripts.Scriptable;
 using UnityEngine;
 using XNode;
 
@@ -9,10 +10,13 @@ namespace Project.Scripts.NodeSystem
     public class DialogueManager : MonoBehaviour
     {
         public static DialogueManager Instance { get; private set; }
-        
-        [SerializeField] private DialogueGraph currentDialogueGraph;
+
+        private DialogueData _activeDialogue;
+        private DialogueGraph _currentDialogueGraph;
         private Node _currentNode;
         private bool _isWaitingChoiceSelect;
+        
+        public bool IsDialogueActive => _activeDialogue != null;
 
         private void Awake()
         {
@@ -21,9 +25,12 @@ namespace Project.Scripts.NodeSystem
 
         public void StartDialogue(DialogueCompanion dialogueCompanion)
         {
-            Debug.Log("Start Dialogue");
-            currentDialogueGraph = dialogueCompanion.Dialogue;
-            foreach (var node in currentDialogueGraph.nodes)
+            _activeDialogue = dialogueCompanion.GetDialogue();
+            if (!_activeDialogue) return;
+
+            _currentDialogueGraph = _activeDialogue.Dialogue;
+            
+            foreach (var node in _currentDialogueGraph.nodes)
             {
                 if (node is StartNode)
                 {
@@ -37,29 +44,28 @@ namespace Project.Scripts.NodeSystem
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_activeDialogue == null) return;
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 // Need to click on choice variant to continue
-                if (_isWaitingChoiceSelect) return; 
+                if (_isWaitingChoiceSelect) return;
                 ProcessNode();
             }
         }
 
         private void ProcessNode()
         {
-            Debug.Log("process node");
+            if (!_currentNode) EndDialogue();
+            
             switch (_currentNode)
             {
                 case DialogueNode dialogueNode:
-                    Debug.Log("process node as dialogue");
                     ShowDialogue(dialogueNode);
                     break;
                 case ChoiceNode choiceNode:
-                    Debug.Log("process node as choice");
                     ShowChoices(choiceNode);
                     break;
                 case QuestStartNode questNode:
-                    Debug.Log("process node as quest");
                     StartQuest(questNode);
                     break;
                 case StartNode:
@@ -87,17 +93,17 @@ namespace Project.Scripts.NodeSystem
             }
             else
             {
-                EndDialogue();
+                _currentNode = null;
             }
         }
 
         private void ShowChoices(ChoiceNode node)
         {
             _isWaitingChoiceSelect = true;
-            var choiceTexts = node.choices
+            var choiceTexts = node.Choices
                 .Select(choice => choice)
                 .ToList();
-            UIDialogue.Instance.ShowChoices(node.question, choiceTexts, callbackIndex => 
+            UIDialogue.Instance.ShowChoices(node.Question, choiceTexts, callbackIndex => 
             {
                 var port = node.GetPort($"choices {callbackIndex}");
                 if (!port.IsConnected) return;
@@ -118,13 +124,17 @@ namespace Project.Scripts.NodeSystem
             }
             else
             {
-                EndDialogue();
+                _currentNode = null;
             }
         }
 
         private void EndDialogue()
         {
-            currentDialogueGraph = null;
+            if (!_activeDialogue) return;
+            
+            GameProgressManager.Instance.SetDialogueCompleted(_activeDialogue);
+            _activeDialogue = null;
+            _currentDialogueGraph = null;
             _currentNode = null;
             UIDialogue.Instance.EndDialogue();
         }

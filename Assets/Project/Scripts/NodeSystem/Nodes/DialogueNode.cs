@@ -7,8 +7,11 @@ namespace Project.Scripts.NodeSystem.Nodes
     [NodeWidth(300)]
     public class DialogueNode : Node
     {
-        [Input] public Node input;
-        [Output] public Node output;
+        [Input]
+        [SerializeField] private Node input;
+        
+        [Output]
+        [SerializeField] private Node output;
         
         public bool speakerIsPlayer = false;
         [TextArea] public string text;

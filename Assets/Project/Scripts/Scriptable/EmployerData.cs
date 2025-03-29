@@ -9,8 +9,10 @@ namespace Project.Scripts.Scriptable
         [SerializeField] private string employerName;
         [PreviewField]
         [SerializeField] private Sprite icon;
+        [SerializeField] private DialogueData[] dialogues;
 
         public string EmployerName => employerName;
         public Sprite Icon => icon;
+        public DialogueData[] Dialogues => dialogues;
     }
 }

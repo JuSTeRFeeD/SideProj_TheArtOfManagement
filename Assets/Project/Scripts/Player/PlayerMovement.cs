@@ -1,7 +1,8 @@
+using Project.Scripts.NodeSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Project.Scripts
+namespace Project.Scripts.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -30,6 +31,7 @@ namespace Project.Scripts
 
         private void Update()
         {
+            if (DialogueManager.Instance.IsDialogueActive) return;
             MovePlayer();
         }
 

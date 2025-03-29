@@ -43,7 +43,6 @@ namespace Project.Scripts.NodeSystem
 
         public void ShowDialogue(string text, bool isPlayerSpeaker)
         {
-            Debug.Log("Show dialogue: " + text);
             dialogueText.text = text;
             speakerNameText.text = isPlayerSpeaker ? playerEmployerData.EmployerName : _npcEmployerData.EmployerName;
 

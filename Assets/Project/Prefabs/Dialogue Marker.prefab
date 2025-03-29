@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3964441115888425476}
-  - component: {fileID: 1863014358517537773}
+  - component: {fileID: 8935224016800997839}
   m_Layer: 0
-  m_Name: Quest Marker
+  m_Name: Dialogue Marker
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 7011833744827159603}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1863014358517537773
+--- !u!114 &8935224016800997839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1287909765668863259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75d5681a0c94dff93db2b56c5dc4a28, type: 3}
+  m_Script: {fileID: 11500000, guid: c256a65eb6bc4b24ac742a6ecb322d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  canvas: {fileID: 6667459959488482050}
+  icon: {fileID: 8095180079338534290}
+  baseSprite: {fileID: 438313050, guid: ba0fee8a89bdf9f408d681831b779246, type: 3}
+  canTalkSprite: {fileID: 1429687862, guid: e77e5263e74d3154c9905cf1272554d3, type: 3}
 --- !u!1 &3936024875945109391
 GameObject:
   m_ObjectHideFlags: 0
