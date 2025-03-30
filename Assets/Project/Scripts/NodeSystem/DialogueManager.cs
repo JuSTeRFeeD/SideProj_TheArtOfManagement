@@ -77,12 +77,27 @@ namespace Project.Scripts.NodeSystem
                     }
                     else EndDialogue();
                     break;
+                case FameNode fameNode:
+                    HandleFameNode(fameNode);
+                    break;
                 default:
                     Debug.Log("process unknown node");
                     break;
             }
         }
-        
+
+        private void HandleFameNode(FameNode fameNode)
+        {
+            // TODO: change fame
+            var port = _currentNode.GetOutputPort("output");
+            if (port.IsConnected)
+            {
+                _currentNode = port.Connection.node;
+                ProcessNode();
+            }
+            else EndDialogue();
+        }
+
         private void ShowDialogue(DialogueNode node)
         {
             UIDialogue.Instance.ShowDialogue(node.text, node.speakerIsPlayer);
