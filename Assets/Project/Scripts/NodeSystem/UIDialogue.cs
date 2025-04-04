@@ -14,7 +14,7 @@ namespace Project.Scripts.NodeSystem
 
         [SerializeField] private Canvas canvas;
         [Space]
-        [SerializeField] private EmployerData playerEmployerData;
+        [SerializeField] private NpcData playerNpcData;
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private Image speakerIcon;
@@ -24,7 +24,7 @@ namespace Project.Scripts.NodeSystem
         [SerializeField] private RectTransform choicesContainer;
         
         private readonly List<Button> _choiceButtons = new();
-        private EmployerData _npcEmployerData;
+        private NpcData _npcNpcData;
 
         private void Awake()
         {
@@ -32,19 +32,19 @@ namespace Project.Scripts.NodeSystem
             canvas.enabled = false;
         }
 
-        public void StartDialogue(EmployerData npcEmployerData)
+        public void StartDialogue(NpcData npcNpcData)
         {
-            _npcEmployerData = npcEmployerData;
+            _npcNpcData = npcNpcData;
             canvas.enabled = true;
             
-            playerSpeakerIcon.sprite = playerEmployerData.Icon;
-            speakerIcon.sprite = _npcEmployerData.Icon;
+            playerSpeakerIcon.sprite = playerNpcData.Icon;
+            speakerIcon.sprite = _npcNpcData.Icon;
         }
 
         public void ShowDialogue(string text, bool isPlayerSpeaker)
         {
             dialogueText.text = text;
-            speakerNameText.text = isPlayerSpeaker ? playerEmployerData.EmployerName : _npcEmployerData.EmployerName;
+            speakerNameText.text = isPlayerSpeaker ? playerNpcData.NpcName : _npcNpcData.NpcName;
 
             speakerIcon.enabled = !isPlayerSpeaker;
             playerSpeakerIcon.enabled = isPlayerSpeaker;

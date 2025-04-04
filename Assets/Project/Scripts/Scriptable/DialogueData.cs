@@ -1,4 +1,5 @@
 using Project.Scripts.NodeSystem;
+using UnityEditor;
 using UnityEngine;
 
 namespace Project.Scripts.Scriptable
@@ -13,5 +14,20 @@ namespace Project.Scripts.Scriptable
         public DialogueGraph Dialogue => dialogue;
         public DialogueData[] CompleteDialoguesToUnlock => completeDialoguesToUnlock;
         public ItemData[] BringItemsToUnlockDialogue => bringItemsToUnlockDialogue;
+        
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (dialogue == null)
+            {
+                dialogue = CreateInstance<DialogueGraph>();
+                dialogue.name = "DialogueGraph";
+            
+                // Сохраняем как вложенный объект
+                AssetDatabase.AddObjectToAsset(dialogue, this);
+                AssetDatabase.SaveAssets();
+            }
+        }
+#endif
     }
 }

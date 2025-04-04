@@ -1,21 +1,23 @@
 using System.Collections.Generic;
+using Project.Scripts.Inventory;
 using Project.Scripts.NodeSystem;
 using Project.Scripts.NPC;
 using Project.Scripts.Scriptable;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Project.Scripts
 {
     public class DialogueState
     {
         public readonly DialogueData dialogueData;
-        public readonly EmployerData linkedEmployer;
+        public readonly NpcData linkedNpc;
         public bool isAvailable;
         public bool isCompleted;
 
-        public DialogueState(DialogueData data, EmployerData linkedToLinkedEmployer)
+        public DialogueState(DialogueData data, NpcData linkedToLinkedNpc)
         {
-            linkedEmployer = linkedToLinkedEmployer;
+            linkedNpc = linkedToLinkedNpc;
             dialogueData = data;
             isAvailable = false;
             isCompleted = false;
@@ -24,9 +26,11 @@ namespace Project.Scripts
     
     public class GameProgressManager : MonoBehaviour
     {
+        [SerializeField] private PlayerInventory playerInventory;
+        
         public static GameProgressManager Instance { get; private set; }
         
-        private readonly Dictionary<EmployerData, DialogueCompanion> _dialogueCompanions = new();
+        private readonly Dictionary<NpcData, DialogueCompanion> _dialogueCompanions = new();
         private readonly Dictionary<DialogueGraph, DialogueState> _dialogueStateByGraph = new();
         private readonly HashSet<DialogueData> _completedDialogues = new();
 
@@ -37,7 +41,7 @@ namespace Project.Scripts
 
         private void Start()
         {
-            var employersData = Resources.LoadAll<EmployerData>("Employers");
+            var employersData = Resources.LoadAll<NpcData>("Employers");
             foreach (var employerData in employersData)
             {
                 foreach (var employerDataDialogue in employerData.Dialogues)
@@ -49,7 +53,7 @@ namespace Project.Scripts
             var dialogueCompanions = FindObjectsByType<DialogueCompanion>(FindObjectsSortMode.None);
             foreach (var dialogueCompanion in dialogueCompanions)
             {
-                _dialogueCompanions.Add(dialogueCompanion.EmployerData, dialogueCompanion);
+                _dialogueCompanions.Add(dialogueCompanion.NpcData, dialogueCompanion);
             }
 
             RefreshAvailableDialogues();
@@ -64,18 +68,31 @@ namespace Project.Scripts
                 var isAvailable = true;
                 foreach (var dialogueData in dialogueState.dialogueData.CompleteDialoguesToUnlock)
                 {
-                    if (_completedDialogues.Contains(dialogueData)) continue;
-                    isAvailable = false;
-                    break;
+                    // Check required items
+                    for (var i = 0; i < dialogueState.dialogueData.BringItemsToUnlockDialogue.Length; i++)
+                    {
+                        if (!playerInventory.HasItem(dialogueData.BringItemsToUnlockDialogue[i]))
+                        {
+                            isAvailable = false;
+                            break;
+                        }
+                    }
+
+                    // Check complete dialogues
+                    if (!_completedDialogues.Contains(dialogueData))
+                    {
+                        isAvailable = false;
+                        break;
+                    }
                 }
 
                 if (isAvailable)
                 {
                     dialogueState.isAvailable = true;
                     
-                    if (_dialogueCompanions.ContainsKey(dialogueState.linkedEmployer))
+                    if (_dialogueCompanions.ContainsKey(dialogueState.linkedNpc))
                     {
-                        _dialogueCompanions[dialogueState.linkedEmployer].AddAvailableDialogue(dialogueState.dialogueData);
+                        _dialogueCompanions[dialogueState.linkedNpc].AddAvailableDialogue(dialogueState.dialogueData);
                     }
                     else
                     {

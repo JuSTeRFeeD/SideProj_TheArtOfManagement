@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4390984870887204090}
   - component: {fileID: 1316838276190911597}
   - component: {fileID: 3285574848165817047}
-  - component: {fileID: 3259641508462386548}
+  - component: {fileID: 611415687805990984}
+  - component: {fileID: 7782155383520883579}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -73,7 +74,7 @@ MonoBehaviour:
   sprintSpeed: 5
   agent: {fileID: 1316838276190911597}
   animator: {fileID: 2566061760404153918}
---- !u!114 &3259641508462386548
+--- !u!114 &611415687805990984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,10 +83,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132888545630806760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75abe1d0f1da473d8774dcadc23b9533, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e0953378a2345bd83ad872c0b72f1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkDistance: 3
+  interactDistance: 4.5
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &7782155383520883579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132888545630806760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7a781df78c455b91a9e4d7e9b0fd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2566061760394728286
 PrefabInstance:
   m_ObjectHideFlags: 0

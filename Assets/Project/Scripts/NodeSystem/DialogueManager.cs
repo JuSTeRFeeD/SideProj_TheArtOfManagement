@@ -38,7 +38,8 @@ namespace Project.Scripts.NodeSystem
                     break;
                 }
             }
-            UIDialogue.Instance.StartDialogue(dialogueCompanion.EmployerData);
+            QuestsSystem.Instance.OnStartDialogue(_activeDialogue);
+            UIDialogue.Instance.StartDialogue(dialogueCompanion.NpcData);
             ProcessNode();
         }
 
@@ -130,7 +131,7 @@ namespace Project.Scripts.NodeSystem
 
         private void StartQuest(QuestStartNode node)
         {
-            // QuestManager.Instance.StartQuest(node.quest);
+            QuestsSystem.Instance.StartQuest(node.QuestData);
             var port = node.GetOutputPort("output");
             if (port.IsConnected)
             {

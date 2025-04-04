@@ -13,7 +13,7 @@ namespace Project.Scripts.NPC
         private void Awake()
         {
             SetMarkerActive(false);
-            SetCanTalk(false);
+            SetCanInteract(false);
         }
 
         public void SetMarkerActive(bool isActive)
@@ -21,7 +21,7 @@ namespace Project.Scripts.NPC
             canvas.enabled = isActive;
         }
         
-        public void SetCanTalk(bool value)
+        public void SetCanInteract(bool value)
         {
             icon.sprite = value ? canTalkSprite : baseSprite;
         }

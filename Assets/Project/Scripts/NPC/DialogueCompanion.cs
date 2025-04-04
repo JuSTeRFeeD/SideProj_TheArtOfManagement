@@ -1,25 +1,34 @@
 using System.Collections.Generic;
+using Project.Scripts.Interactables;
+using Project.Scripts.NodeSystem;
+using Project.Scripts.Player;
 using Project.Scripts.Scriptable;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Project.Scripts.NPC
 {
-    public class DialogueCompanion : MonoBehaviour
+    public class DialogueCompanion : MonoBehaviour, IInteractable
     {
-        [SerializeField] private EmployerData employerData;
+        [SerializeField] private NpcData npcData;
         [SerializeField] private DialogueMarker dialogueMarker;
 
-        public EmployerData EmployerData => employerData;
+        public NpcData NpcData => npcData;
         private readonly Queue<DialogueData> _availableDialogues = new();
         
         public bool HasAvailableDialogues => _availableDialogues.Count > 0;
-        public DialogueMarker DialogueMarker => dialogueMarker;
+        
+        public Vector3 Position() => transform.position;
 
-        [Button]
-        public void TestLogAvailableDialogues()
+        public bool CanInteract() => HasAvailableDialogues;
+        
+        public void Interact(PlayerInteractController playerInteractController)
         {
-            Debug.LogError($"{name} has {_availableDialogues.Count} dialogues available: {HasAvailableDialogues}");
+            DialogueManager.Instance.StartDialogue(this);
+        }
+
+        public void SetIsNearest(bool value)
+        {
+            dialogueMarker.SetCanInteract(value);
         }
         
         public void AddAvailableDialogue(DialogueData dialogueStateDialogueData)

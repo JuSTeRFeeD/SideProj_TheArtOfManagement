@@ -1,3 +1,4 @@
+using Project.Scripts.Scriptable;
 using UnityEngine;
 using XNode;
 
@@ -8,9 +9,12 @@ namespace Project.Scripts.NodeSystem.Nodes
     {
         [Input] 
         [SerializeField] private Node input;
+        
         [Output] 
         [SerializeField] private Node output;
         
-        // public Quest quest;
+        [SerializeField] private QuestData questData;
+        
+        public QuestData QuestData => questData;
     }
 }
