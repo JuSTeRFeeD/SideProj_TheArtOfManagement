@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Project.Scripts.NodeSystem.Quests;
 using TMPro;
 using UnityEngine;
@@ -13,27 +14,41 @@ namespace Project.Scripts
         [SerializeField] private Image containerBackroundImage;
         [SerializeField] private TextMeshProUGUI textPrefab;
         [SerializeField] private RectTransform container;
+
+        private readonly Dictionary<QuestGraphProcessor, TextMeshProUGUI> _processorsTexts = new();
         
         private void Start()
         {
             questsManager.OnQuestsChange += OnQuestsChange;
+            questsManager.OnTimedQuestUpdate += OnTimedQuestUpdate;
+        }
+
+        private void OnTimedQuestUpdate(QuestGraphProcessor processor)
+        {
+            if (_processorsTexts.TryGetValue(processor, out var txt))
+            {
+                txt.SetText(processor.GetQuestDescription());
+            }
         }
 
         private void OnQuestsChange()
         {
-            for (var i = 0; i < container.childCount; i++)
+            foreach (var keyValue in _processorsTexts)
             {
-                Destroy(container.GetChild(i).gameObject);
+                Destroy(keyValue.Value.gameObject);
             }
+            _processorsTexts.Clear();
             
             var displayActive = false;
             foreach (var questsManagerProcessor in questsManager.processors)
             {
                 var desc = questsManagerProcessor.GetQuestDescription();
                 if (string.IsNullOrEmpty(desc)) continue;
-                
-                Instantiate(textPrefab, container).SetText(desc);
+
+                var txt = Instantiate(textPrefab, container);
+                txt.SetText(desc);
                 displayActive = true;
+                _processorsTexts.Add(questsManagerProcessor, txt);
             }
             
             containerBackroundImage.enabled = displayActive;
@@ -50,6 +65,7 @@ namespace Project.Scripts
         private void OnDestroy()
         {
             questsManager.OnQuestsChange -= OnQuestsChange;
+            questsManager.OnTimedQuestUpdate -= OnTimedQuestUpdate;
         }
     }
 }

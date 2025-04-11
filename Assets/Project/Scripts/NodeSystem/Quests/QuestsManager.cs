@@ -18,6 +18,7 @@ namespace Project.Scripts.NodeSystem.Quests
         public List<QuestGraphProcessor> processors = new();
 
         public event Action OnQuestsChange;
+        public event Action<QuestGraphProcessor> OnTimedQuestUpdate;
         
         private void Start()
         {
@@ -39,6 +40,7 @@ namespace Project.Scripts.NodeSystem.Quests
             {
                 var processor = new QuestGraphProcessor(questGraph, this);
                 processor.OnQuestUpdate += HandleProcessorQuestUpdate;
+                processor.OnTimedQuestUpdate += HandleProcessorTimedQuestUpdate;
                 processors.Add(processor);
             }
             
@@ -49,6 +51,11 @@ namespace Project.Scripts.NodeSystem.Quests
             }
             
             HandleProcessorQuestUpdate();
+        }
+
+        private void HandleProcessorTimedQuestUpdate(QuestGraphProcessor processor)
+        {
+            OnTimedQuestUpdate?.Invoke(processor);
         }
 
         private void HandleProcessorQuestUpdate()

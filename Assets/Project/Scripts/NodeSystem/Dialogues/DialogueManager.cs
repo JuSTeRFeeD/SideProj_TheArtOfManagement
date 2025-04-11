@@ -49,7 +49,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
                 Debug.LogError($"Dialogue graph: {_currentDialogueGraph.name} doesn't have a StartNode!");
             }
 #endif
-            _dialogueTuple.questGraphProcessor.OnStartDialogue(_currentDialogueGraph);
+            _dialogueTuple.questGraphProcessor.OnStartDialogue(_dialogueTuple);
             UIDialogue.Instance.StartDialogue(dialogueCompanion.NpcData);
             ProcessNode();
         }

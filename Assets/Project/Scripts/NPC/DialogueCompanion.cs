@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Project.Scripts.Interactables;
 using Project.Scripts.NodeSystem;
 using Project.Scripts.NodeSystem.Dialogues;
@@ -15,7 +16,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private DialogueMarker dialogueMarker;
 
         public NpcData NpcData => npcData;
-        private readonly Queue<DialogueTuple> _availableDialogues = new();
+        private readonly List<DialogueTuple> _availableDialogues = new();
         
         public bool HasAvailableDialogues => _availableDialogues.Count > 0;
         
@@ -33,15 +34,23 @@ namespace Project.Scripts.NPC
             dialogueMarker.SetCanInteract(value);
         }
         
-        public void AddAvailableDialogue(DialogueGraph dialogueStateDialogueData, QuestGraphProcessor linkedQuestProcessor)
+        public void AddAvailableDialogue(DialogueTuple dialogueTuple)
         {
-            Debug.Log($"Added dialogue `{dialogueStateDialogueData.name}` to `{name}`");
-            _availableDialogues.Enqueue(new DialogueTuple
-            {
-                dialogueGraph = dialogueStateDialogueData,
-                questGraphProcessor = linkedQuestProcessor
-            });
+            _availableDialogues.Add(dialogueTuple);
             UpdateAbilityToStartDialogue();
+        }
+        
+        public void RemoveAvailableDialogue(DialogueGraph dialogueGraph, QuestGraphProcessor questGraphProcessor)
+        {
+            var itemToRemove = _availableDialogues.FirstOrDefault(d => 
+                d.dialogueGraph == dialogueGraph && 
+                d.questGraphProcessor == questGraphProcessor);
+    
+            if (itemToRemove != null)
+            {
+                _availableDialogues.Remove(itemToRemove);
+                UpdateAbilityToStartDialogue();
+            }
         }
 
         public void UpdateAbilityToStartDialogue()
@@ -51,8 +60,12 @@ namespace Project.Scripts.NPC
 
         public DialogueTuple GetDialogue()
         {
-            if (_availableDialogues.Count == 0) Debug.LogError("[DialogueCompanion] No dialogues available");
-            var dialogue = _availableDialogues.Dequeue();
+            if (_availableDialogues.Count == 0) 
+                Debug.LogError("[DialogueCompanion] No dialogues available");
+    
+            var dialogue = _availableDialogues[0];
+            _availableDialogues.RemoveAt(0);
+    
             dialogueMarker.SetMarkerActive(false);
             UpdateAbilityToStartDialogue();
             return dialogue;

@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20485217c0a478ea3eb36cf921ea4da, type: 3}
-  m_Name: SubQuest Talk with Pavel
+  m_Name: SubQuest Back to Alexandra
   m_EditorClassIdentifier: 
   isMainQuest: 0
-  description: "\u041F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u044C\u0442\u044C
-    \u0441 \u043F\u0430\u0432\u043B\u043E\u043C"
+  description: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0435"
   durationSec: 0
   questName: 
   itemInInventory: {fileID: 0}
-  targetDialogue: {fileID: 11400000, guid: 103131d8e58eb4f4ebb922e632b9b2a1, type: 2}
+  targetDialogue: {fileID: 11400000, guid: 1f8909d4bdfba4b49ad369c8e4313253, type: 2}

@@ -54,6 +54,7 @@ namespace Project.Scripts.NodeSystem
         {
             speakerIcon.enabled = true;
             playerSpeakerIcon.enabled = false;
+            speakerNameText.text = _npcNpcData.NpcName;
             
             dialogueText.text = question;
             

@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Project.Scripts.Fame;
 using Project.Scripts.Inventory;
+using Project.Scripts.NodeSystem.Dialogues.Nodes;
 using Project.Scripts.NodeSystem.Quests.Nodes;
 using Project.Scripts.Scriptable;
 using UnityEngine;
@@ -13,9 +15,17 @@ namespace Project.Scripts.NodeSystem.Quests
 {
     public class QuestTuple
     {
+        public UnlockDialogueNode byUnlockDialogueNode;
         public QuestData questData;
         public bool isDialogueEnded;
         public bool isItemInInventory;
+        public bool isFailed;
+    }
+
+    internal struct UnlockedDialogues
+    {
+        public DialogueGraph dialogueGraph;
+        public NpcData npcData;
     }
     
     public class QuestGraphProcessor
@@ -26,10 +36,16 @@ namespace Project.Scripts.NodeSystem.Quests
         
         private readonly List<QuestTuple> _quests = new();
         public event Action OnQuestUpdate;
+        public event Action<QuestGraphProcessor> OnTimedQuestUpdate;
         
         public bool IsActive { get; private set; } = false;
         public bool IsQuestEnded { get; private set; } = false;
 
+        private float _timer;
+        private readonly List<UnlockedDialogues> _unlockedDialogues = new();
+        
+        private Coroutine _timedQuestCoroutine;
+        
         public bool TryGetRequiredQuestItem(out ItemData itemData)
         {
             itemData = default;
@@ -56,18 +72,33 @@ namespace Project.Scripts.NodeSystem.Quests
                     sb.Append(index + 1);
                     sb.Append(". ");
                     sb.Append(questTuple.questData.QuestName);
+
+                    if (questTuple.questData.DurationSec > 0)
+                    {
+                        var time = TimeSpan.FromSeconds(Mathf.Max(0, _timer));
+                        if (_timer < 10f) sb.Append("<color=red>");
+                        sb.Append(" (");
+                        sb.Append($"{time.Minutes:D2}");
+                        sb.Append(":");
+                        sb.Append($"{time.Seconds:D2}");
+                        sb.Append(")");
+                        if (_timer < 10f) sb.Append("</color>");
+                    }
+                        
                     sb.Append("\n");
                     continue;
                 }
 
                 sb.Append("- ");
-                sb.Append(questTuple.questData.Description);
-                if (
+                var done =
                     (questTuple.isDialogueEnded) || // dialogue ended
                     (questTuple.isItemInInventory && questTuple.questData.ItemInInventory) // item in inventory
-                ) {
-                    sb.Append(" [+]");
-                }
+                    ;
+                var failed = questTuple.isFailed;
+                if (failed) sb.Append("<color=red>");
+                else if (done) sb.Append("<color=green>");
+                sb.Append(questTuple.questData.Description);
+                if (done || failed) sb.Append("</color>");
                 sb.Append("\n");
             }
             return sb.ToString();
@@ -131,11 +162,20 @@ namespace Project.Scripts.NodeSystem.Quests
                 case QuestEndNode questEndNode:
                     ProcessQuestEndNode(questEndNode);
                     break;
+                case EndTimerQuestNode endTimerQuestNode:
+                    ProcessEndTimerQuestNode(endTimerQuestNode);
+                    break;
             }
         }
 
         private void ProcessQuestEndNode(QuestEndNode questEndNode)
         {
+            Debug.Log("Processed quest end node");
+            if (_timedQuestCoroutine != null)
+            {
+                _questsManager.StopCoroutine(_timedQuestCoroutine);
+                _timedQuestCoroutine = null;
+            }
             _currentNode = null;
             IsQuestEnded = true;
             OnQuestUpdate?.Invoke();
@@ -146,15 +186,69 @@ namespace Project.Scripts.NodeSystem.Quests
             Debug.Log($"Started quest {questStartNode.QuestData.name} | {questStartNode.QuestData.QuestName}-{questStartNode.QuestData.Description}");
             _quests.Add(new QuestTuple
             {
-                questData = questStartNode.QuestData
+                questData = questStartNode.QuestData,
             });
             _currentNode = questStartNode;
             OnQuestUpdate?.Invoke();
 
-            // First quest
+            // Main quest title
             if (_quests.Count == 1) SkipQuestRequirements();
             // Only talk quest
             else if (questStartNode.QuestData.TargetDialogue && !questStartNode.QuestData.ItemInInventory) SkipQuestRequirements();
+
+            // START TIMED QUEST
+            if (questStartNode.QuestData.DurationSec > 0)
+            {
+                _timedQuestCoroutine = _questsManager.StartCoroutine(TimedQuestCoroutine(questStartNode, questStartNode.QuestData.DurationSec));
+            }
+        }
+
+        // Timed Quest Coroutine
+        private IEnumerator TimedQuestCoroutine(Node questStartNode, float duration)
+        {
+            Debug.Log($"Started timed quest {duration}");
+            _timer = duration;
+            while (_timer > 0)
+            {
+                _timer -= Time.deltaTime;
+                OnTimedQuestUpdate?.Invoke(this);
+                yield return null;
+            }
+            
+            // Quest failed
+            
+            // Lock unlocked dialogues
+            foreach (var questTuple in _quests)
+            {
+                questTuple.isFailed = true;
+            }
+            foreach (var unlockedDialogues in _unlockedDialogues)
+            {
+                if (_questsManager.dialogueCompanionByNpc.TryGetValue(unlockedDialogues.npcData,
+                        out var dialogueCompanion))
+                {
+                    dialogueCompanion.RemoveAvailableDialogue(unlockedDialogues.dialogueGraph, this);
+                }
+            }
+            
+            // To fail connection
+            var outputPort = questStartNode.GetOutputPort("outputFail");
+            if (outputPort.IsConnected)
+            {
+                _currentNode = outputPort.Connection.node;
+                ProcessNode();
+            }
+        }
+
+        // Timed Quest Completed
+        private void ProcessEndTimerQuestNode(EndTimerQuestNode endTimerQuestNode)
+        {
+            if (_timedQuestCoroutine != null)
+            {
+                _questsManager.StopCoroutine(_timedQuestCoroutine);
+                _timedQuestCoroutine = null;
+            }
+            Next(endTimerQuestNode);
         }
 
         private void SkipQuestRequirements()
@@ -178,7 +272,13 @@ namespace Project.Scripts.NodeSystem.Quests
             if (_questsManager.dialogueCompanionByNpc.TryGetValue(unlockDialogueNode.NpcData,
                     out var dialogueCompanion))
             {
-                dialogueCompanion.AddAvailableDialogue(unlockDialogueNode.DialogueGraph, this);
+                _unlockedDialogues.Add(new UnlockedDialogues
+                {
+                    dialogueGraph = unlockDialogueNode.DialogueGraph,
+                    npcData = unlockDialogueNode.NpcData
+                });
+                var tuple = new DialogueTuple(unlockDialogueNode.DialogueGraph, this);
+                dialogueCompanion.AddAvailableDialogue(tuple);
             }
         }
 
@@ -220,16 +320,37 @@ namespace Project.Scripts.NodeSystem.Quests
             ProcessNode();
         }
 
-        public void OnStartDialogue(DialogueGraph currentDialogueGraph)
+        public void OnStartDialogue(DialogueTuple dialogueTuple)
         {
+            CheckTimedQuestCompleteOnDialogueEnd();
+            
             foreach (var questTuple in _quests)
             {
-                if (questTuple.questData.TargetDialogue == currentDialogueGraph)
+                if (questTuple.questData.TargetDialogue == dialogueTuple.dialogueGraph)
                 {
                     questTuple.isDialogueEnded = true;
                 }
             }
             OnQuestUpdate?.Invoke();
+        }
+
+        // Check if dialogue end completes timed quest to prevent fail timed quest
+        private void CheckTimedQuestCompleteOnDialogueEnd()
+        {
+            if (_timedQuestCoroutine == null)
+            {
+                return;
+            }
+            
+            var outputPort = _currentNode.GetOutputPort("outputSuccess");
+            if (outputPort is { IsConnected: true })
+            {
+                if (outputPort.Connection.node is EndTimerQuestNode)
+                {
+                    _questsManager.StopCoroutine(_timedQuestCoroutine);
+                    _timedQuestCoroutine = null;
+                }
+            }
         }
     }
 }
