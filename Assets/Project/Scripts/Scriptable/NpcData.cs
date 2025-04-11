@@ -11,12 +11,7 @@ namespace Project.Scripts.Scriptable
         [PreviewField]
         [SerializeField] private Sprite icon;
         
-        [InlineEditor]
-        [TableList]
-        [SerializeField] private DialogueData[] dialogues;
-
         public string NpcName => npcName;
         public Sprite Icon => icon;
-        public DialogueData[] Dialogues => dialogues;
     }
 }

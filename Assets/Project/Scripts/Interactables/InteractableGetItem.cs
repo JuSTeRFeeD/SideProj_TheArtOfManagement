@@ -15,11 +15,18 @@ namespace Project.Scripts.Interactables
         [SerializeField] private InteractProgress interactProgress;
         [SerializeField] private DialogueMarker dialogueMarker;
 
-        private bool _isCanInteract = true;
+        private bool _isCanInteract = false;
 
         public Vector3 Position() => transform.position;
         public bool CanInteract() => _isCanInteract;
 
+        public ItemData GiveItemAfterInteract => giveItemOnInteract;
+
+        public void SetCanInteract(bool value)
+        {
+            _isCanInteract = value;
+        }
+        
         private void Start()
         {
             interactProgress.gameObject.SetActive(false);
@@ -55,7 +62,6 @@ namespace Project.Scripts.Interactables
                 yield return null;
             }
             interactProgress.gameObject.SetActive(false);
-            _isCanInteract = true;
             
             playerInventory.AddItem(giveItemOnInteract);
         }

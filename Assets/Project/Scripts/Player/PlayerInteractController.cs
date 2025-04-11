@@ -44,8 +44,6 @@ namespace Project.Scripts.Player
                 if (!result.TryGetComponent(out IInteractable interactable)) continue;
                 if (!interactable.CanInteract()) continue;
 
-                Debug.Log($"Found interactable {count}");
-                
                 var sqrDist = (interactable.Position() - transform.position).sqrMagnitude;
                 if (sqrDist < interactDistance && sqrDist < nearestSqrDist)
                 {

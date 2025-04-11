@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2747868b694d22a492e6ffb1cec692, type: 3}
   m_Name: Water Item Data
   m_EditorClassIdentifier: 
-  id: 0
   title: "\u0412\u043E\u0434\u0430"
   description: "\u0412\u043E\u0434\u0430 \u0438\u0437 \u043A\u0443\u043B\u0435\u0440\u0430
     \u0434\u043B\u044F \u0432\u043E\u0434\u044B"
-  icon: {fileID: -268159799, guid: e33f404f8dd1ae54886b6afc03511c5e, type: 3}
+  icon: {fileID: 1642256697, guid: 6492ca80969a7d64e85aabef226d9a7d, type: 3}

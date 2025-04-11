@@ -1,4 +1,5 @@
 using Project.Scripts.NodeSystem;
+using Project.Scripts.NodeSystem.Dialogues;
 using UnityEngine;
 using UnityEngine.AI;
 

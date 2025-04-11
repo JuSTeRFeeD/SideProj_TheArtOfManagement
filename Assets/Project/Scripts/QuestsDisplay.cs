@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using Project.Scripts.Scriptable;
+using Project.Scripts.NodeSystem.Quests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,54 +8,35 @@ namespace Project.Scripts
 {
     public class QuestsDisplay : MonoBehaviour
     {
+        [SerializeField] private QuestsManager questsManager;
+        [Space]
         [SerializeField] private Image containerBackroundImage;
         [SerializeField] private TextMeshProUGUI textPrefab;
         [SerializeField] private RectTransform container;
         
         private void Start()
         {
-            QuestsSystem.Instance.OnQuestsChangedEvent += OnQuestsChange;
-            OnQuestsChange(null);
+            questsManager.OnQuestsChange += OnQuestsChange;
         }
 
-        private void OnQuestsChange(List<QuestData> activeQuests)
+        private void OnQuestsChange()
         {
             for (var i = 0; i < container.childCount; i++)
             {
-                var child = container.GetChild(i);
-                Destroy(child.gameObject);
+                Destroy(container.GetChild(i).gameObject);
             }
-
-            if (activeQuests != null)
+            
+            var displayActive = false;
+            foreach (var questsManagerProcessor in questsManager.processors)
             {
-                var sb = new StringBuilder();
-                for (var index = 0; index < activeQuests.Count; index++)
-                {
-                    var activeQuest = activeQuests[index];
-                    var text = Instantiate(textPrefab, container);
-                    sb.Append(index + 1);
-                    sb.Append(". ");
-                    sb.Append(activeQuest.QuestName);
-                    sb.Append("\n");
-                    if (activeQuest.BringItem)
-                    {
-                        sb.Append("\n");
-                        sb.Append("- Принести: ");
-                        sb.Append(activeQuest.BringItem.Description);
-                    }
-                    sb.Append("\n- ");
-                    sb.Append(activeQuest.Description);
-
-                    text.SetText(sb.ToString());
-                    sb.Clear();
-                }
-
-                containerBackroundImage.enabled = activeQuests.Count > 0;
+                var desc = questsManagerProcessor.GetQuestDescription();
+                if (string.IsNullOrEmpty(desc)) continue;
+                
+                Instantiate(textPrefab, container).SetText(desc);
+                displayActive = true;
             }
-            else
-            {
-                containerBackroundImage.enabled = false;
-            }
+            
+            containerBackroundImage.enabled = displayActive;
 
             StartCoroutine(RebuildUI());
         }
@@ -71,7 +49,7 @@ namespace Project.Scripts
 
         private void OnDestroy()
         {
-            QuestsSystem.Instance.OnQuestsChangedEvent -= OnQuestsChange;
+            questsManager.OnQuestsChange -= OnQuestsChange;
         }
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Project.Scripts.Interactables;
 using Project.Scripts.NodeSystem;
+using Project.Scripts.NodeSystem.Dialogues;
+using Project.Scripts.NodeSystem.Quests;
 using Project.Scripts.Player;
 using Project.Scripts.Scriptable;
 using UnityEngine;
@@ -13,7 +15,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private DialogueMarker dialogueMarker;
 
         public NpcData NpcData => npcData;
-        private readonly Queue<DialogueData> _availableDialogues = new();
+        private readonly Queue<DialogueTuple> _availableDialogues = new();
         
         public bool HasAvailableDialogues => _availableDialogues.Count > 0;
         
@@ -31,9 +33,15 @@ namespace Project.Scripts.NPC
             dialogueMarker.SetCanInteract(value);
         }
         
-        public void AddAvailableDialogue(DialogueData dialogueStateDialogueData)
+        public void AddAvailableDialogue(DialogueGraph dialogueStateDialogueData, QuestGraphProcessor linkedQuestProcessor)
         {
-            _availableDialogues.Enqueue(dialogueStateDialogueData);
+            Debug.Log($"Added dialogue `{dialogueStateDialogueData.name}` to `{name}`");
+            _availableDialogues.Enqueue(new DialogueTuple
+            {
+                dialogueGraph = dialogueStateDialogueData,
+                questGraphProcessor = linkedQuestProcessor
+            });
+            UpdateAbilityToStartDialogue();
         }
 
         public void UpdateAbilityToStartDialogue()
@@ -41,11 +49,12 @@ namespace Project.Scripts.NPC
             dialogueMarker.SetMarkerActive(HasAvailableDialogues);
         }
 
-        public DialogueData GetDialogue()
+        public DialogueTuple GetDialogue()
         {
             if (_availableDialogues.Count == 0) Debug.LogError("[DialogueCompanion] No dialogues available");
             var dialogue = _availableDialogues.Dequeue();
             dialogueMarker.SetMarkerActive(false);
+            UpdateAbilityToStartDialogue();
             return dialogue;
         }
     }
