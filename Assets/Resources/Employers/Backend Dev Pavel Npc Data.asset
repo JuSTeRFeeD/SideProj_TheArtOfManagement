@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Backend Dev Pavel Npc Data
   m_EditorClassIdentifier: 
   npcName: "\u041F\u0430\u0432\u0435\u043B"
-  icon: {fileID: 21300000, guid: ae0939f97ff87d64a8dfa2f03d086391, type: 3}
+  icon: {fileID: 21300000, guid: 620403125f19ef04887f05c1d7b50232, type: 3}

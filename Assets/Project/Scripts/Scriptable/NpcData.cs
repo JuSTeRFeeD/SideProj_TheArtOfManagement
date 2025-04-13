@@ -8,7 +8,7 @@ namespace Project.Scripts.Scriptable
     {
         [SerializeField] private string npcName;
         
-        [PreviewField]
+        [PreviewField(ObjectFieldAlignment.Right, Height = 200)]
         [SerializeField] private Sprite icon;
         
         public string NpcName => npcName;
