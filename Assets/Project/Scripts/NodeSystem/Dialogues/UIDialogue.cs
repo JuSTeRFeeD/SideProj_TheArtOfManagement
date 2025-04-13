@@ -14,7 +14,12 @@ namespace Project.Scripts.NodeSystem.Dialogues
     {
         public static UIDialogue Instance { get; private set; }
 
+        [Header("Dialogue")]
         [SerializeField] private Canvas canvas;
+
+        [Space] 
+        [SerializeField] private float charsPerSecond = 20f;
+        [SerializeField] private TextMeshProUGUI skipDialogueAnimText;
         [Space]
         [SerializeField] private NpcData playerNpcData;
         [SerializeField] private TextMeshProUGUI speakerNameText;
@@ -44,6 +49,10 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private readonly List<Button> _choiceButtons = new();
         private NpcData _npcNpcData;
 
+        private Coroutine _displayDialogueTextCoroutine;
+
+        private string _fullTargetText;
+        
         private void Awake()
         {
             Instance = this;
@@ -68,12 +77,14 @@ namespace Project.Scripts.NodeSystem.Dialogues
             speakerIcon.sprite = _npcNpcData.Icon;
 
             dialogueContainer.DOKill();
-            dialogueContainer.anchoredPosition = _dialogueContainerDefaultPosition; 
+            dialogueContainer.anchoredPosition = _dialogueContainerDefaultPosition;
+            _fullTargetText = string.Empty;
         }
 
         public void ShowDialogue(string text, bool isPlayerSpeaker)
         {
-            dialogueText.text = text;
+            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(text));
+            
             speakerNameText.text = _npcNpcData.NpcName;
             
             playerAvatarCanvasGroup.alpha = isPlayerSpeaker ? 1f : 0f;
@@ -86,6 +97,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
             choicesCanvas.DOKill();
             choicesCanvas.alpha = 0f;
+
             choicesCanvas
                 .DOFade(1f, 0.3f)
                 .SetDelay(0.15f)
@@ -94,8 +106,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
             playerAvatarCanvasGroup.alpha = 0f;
             npcAvatarCanvasGroup.alpha = 1f;
             speakerNameText.text = _npcNpcData.NpcName;
-            
-            dialogueText.text = question;
+
+            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(question));
             
             for (var index = 0; index < choices.Count; index++)
             {
@@ -160,14 +172,11 @@ namespace Project.Scripts.NodeSystem.Dialogues
         {
             ClearChoices();
             canvas.enabled = false;
-
-            dialogueContainer.DOKill();
-            choicesCanvas.DOKill();
         }
 
-        private void OnFameChanged(bool isup)
+        private void OnFameChanged(bool isUp)
         {
-            
+            StartCoroutine(AnimateFame(isUp));
         }
 
         private IEnumerator AnimateFame(bool isUp)
@@ -188,6 +197,45 @@ namespace Project.Scripts.NodeSystem.Dialogues
                 yield return fameDownImage.transform
                     .DOLocalJump(fameUpImage.transform.position, 0.2f, 1, 0.3f)
                     .WaitForCompletion();
+            }
+        }
+
+        private IEnumerator DisplayDialogueText(string text)
+        {
+            skipDialogueAnimText.enabled = true;
+            _fullTargetText = text;
+            
+            var delay = 1f / charsPerSecond;
+            var totalChars = text.Length;
+            var currentChar = 0;
+
+            while (currentChar <= totalChars)
+            {
+                dialogueText.text = text.Substring(0, currentChar);
+                currentChar++;
+                yield return new WaitForSeconds(delay);
+            }
+        }
+        
+        public void SkipTyping()
+        {
+            if (_displayDialogueTextCoroutine != null)
+            {
+                StopCoroutine(_displayDialogueTextCoroutine);
+                _displayDialogueTextCoroutine = null;
+            }
+            skipDialogueAnimText.enabled = false;
+            dialogueText.text = _fullTargetText;
+        }
+
+        private void Update()
+        {
+            if (_displayDialogueTextCoroutine != null)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SkipTyping();
+                }
             }
         }
     }
