@@ -21,7 +21,7 @@ namespace Project.Scripts.Player
 
         private void Interact()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 _currentInteractable?.Interact(this);
             }

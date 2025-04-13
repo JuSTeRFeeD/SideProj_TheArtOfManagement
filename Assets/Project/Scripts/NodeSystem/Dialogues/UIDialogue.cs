@@ -52,7 +52,10 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private Coroutine _displayDialogueTextCoroutine;
 
         private string _fullTargetText;
-        
+        private bool _skipDialoguePressed;
+
+        public bool IsAnimationPlaying { get; private set; }
+
         private void Awake()
         {
             Instance = this;
@@ -83,52 +86,75 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
         public void ShowDialogue(string text, bool isPlayerSpeaker)
         {
-            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(text));
+            if (IsAnimationPlaying) return;
+            
+            DialogueMoveOnChoicesActive(false);
             
             speakerNameText.text = _npcNpcData.NpcName;
             
             playerAvatarCanvasGroup.alpha = isPlayerSpeaker ? 1f : 0f;
             npcAvatarCanvasGroup.alpha = !isPlayerSpeaker ? 1f : 0f;
+            
+            IsAnimationPlaying = true;
+            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(text, () =>
+            {
+                IsAnimationPlaying = false;
+            }));
         }
 
         public void ShowChoices(string question, List<string> choices, Action<int> callback)
         {
-            SetChoicesActive(true);
+            DialogueMoveOnChoicesActive(false);
 
             choicesCanvas.DOKill();
             choicesCanvas.alpha = 0f;
-
-            choicesCanvas
-                .DOFade(1f, 0.3f)
-                .SetDelay(0.15f)
-                .SetLink(choicesCanvas.gameObject);
             
             playerAvatarCanvasGroup.alpha = 0f;
             npcAvatarCanvasGroup.alpha = 1f;
             speakerNameText.text = _npcNpcData.NpcName;
 
-            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(question));
-            
-            for (var index = 0; index < choices.Count; index++)
+            _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(question, () =>
             {
-                var choice = choices[index];
-                
-                var btn = Instantiate(choiceButtonPrefab, choicesContainer);
-                btn.GetComponentInChildren<TextMeshProUGUI>().text = choice;
-                _choiceButtons.Add(btn);
-                
-                var choiceIndex = index;
-                btn.onClick.AddListener(() =>
+                for (var index = 0; index < choices.Count; index++)
                 {
-                    ClearChoices();
-                    callback.Invoke(choiceIndex);
-                });
-            }
+                    var choice = choices[index];
+                
+                    var btn = Instantiate(choiceButtonPrefab, choicesContainer);
+                    btn.GetComponentInChildren<TextMeshProUGUI>().text = choice;
+                    _choiceButtons.Add(btn);
+                
+                    var choiceIndex = index;
+                    btn.onClick.AddListener(() =>
+                    {
+                        ClearChoices(() =>
+                        {
+                            callback.Invoke(choiceIndex);
+                        });
+                    });
+                }
 
-            StartCoroutine(RebuildLayout());
+                StartCoroutine(RebuildLayout());
+                
+                StartCoroutine(DisplayChoices());
+            }));
         }
 
-        private void SetChoicesActive(bool isActive)
+        private IEnumerator DisplayChoices()
+        {
+            skipDialogueAnimText.text = string.Empty;
+            yield return new WaitForSeconds(0.15f);
+            DialogueMoveOnChoicesActive(true);
+            choicesCanvas
+                .DOFade(1f, 0.3f)
+                .SetDelay(0.15f)
+                .SetLink(choicesCanvas.gameObject)
+                .OnComplete(() =>
+                {
+                    IsAnimationPlaying = false;
+                });
+        }
+
+        private void DialogueMoveOnChoicesActive(bool isActive)
         {
             dialogueContainer.DOKill();
             if (isActive)
@@ -151,8 +177,12 @@ namespace Project.Scripts.NodeSystem.Dialogues
             LayoutRebuilder.ForceRebuildLayoutImmediate(choicesContainer); 
         }
 
-        private void ClearChoices()
+        private void ClearChoices(Action onComplete = null)
         {
+            foreach (var choiceButton in _choiceButtons)
+            {
+                choiceButton.interactable = false;
+            }
             choicesCanvas
                 .DOFade(0f, 0.3f)
                 .SetLink(choicesCanvas.gameObject)
@@ -164,8 +194,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
                         Destroy(choiceButton.gameObject);
                     }
                     _choiceButtons.Clear(); 
+                    onComplete?.Invoke();
                 });
-            SetChoicesActive(false);
         }
 
         public void EndDialogue()
@@ -200,9 +230,10 @@ namespace Project.Scripts.NodeSystem.Dialogues
             }
         }
 
-        private IEnumerator DisplayDialogueText(string text)
+        private IEnumerator DisplayDialogueText(string text, Action onComplete = null)
         {
-            skipDialogueAnimText.enabled = true;
+            _skipDialoguePressed = false;
+            skipDialogueAnimText.text = "Нажмите [Space] чтобы пропустить";
             _fullTargetText = text;
             
             var delay = 1f / charsPerSecond;
@@ -211,21 +242,22 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
             while (currentChar <= totalChars)
             {
-                dialogueText.text = text.Substring(0, currentChar);
+                if (_skipDialoguePressed) break;
+                
+                dialogueText.text = text[..currentChar];
                 currentChar++;
                 yield return new WaitForSeconds(delay);
             }
+            SkipTyping();
+            onComplete?.Invoke();
         }
-        
-        public void SkipTyping()
+
+        private void SkipTyping()
         {
-            if (_displayDialogueTextCoroutine != null)
-            {
-                StopCoroutine(_displayDialogueTextCoroutine);
-                _displayDialogueTextCoroutine = null;
-            }
-            skipDialogueAnimText.enabled = false;
+            skipDialogueAnimText.text = "Нажмите [Space] для продолжения";
             dialogueText.text = _fullTargetText;
+            IsAnimationPlaying = false;
+            _skipDialoguePressed = false;
         }
 
         private void Update()
@@ -234,7 +266,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    SkipTyping();
+                    _skipDialoguePressed = true;
                 }
             }
         }

@@ -57,10 +57,10 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private void Update()
         {
             if (_currentDialogueGraph == null) return;
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Need to click on choice variant to continue
-                if (_isWaitingChoiceSelect) return;
+                if (UIDialogue.Instance.IsAnimationPlaying || _isWaitingChoiceSelect) return;
                 ProcessNode();
             }
         }
