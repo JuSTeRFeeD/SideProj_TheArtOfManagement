@@ -3,7 +3,7 @@ using XNode;
 
 namespace Project.Scripts.NodeSystem
 {
-    [CreateNodeMenu("Intern Fame Node")]
+    [CreateNodeMenu("Intern/Intern Fame Node")]
     [NodeTint("#702b59")]
     public class InternFameNode : NodeBase
     {

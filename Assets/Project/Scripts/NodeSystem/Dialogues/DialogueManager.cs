@@ -92,6 +92,9 @@ namespace Project.Scripts.NodeSystem.Dialogues
                 case InternFameNode internFameNode:
                     HandleInternFameNode(internFameNode);
                     break;
+                case CheckInternFameNode checkInternFameNode:
+                    HandleCheckInternFameNode(checkInternFameNode);
+                    break;
                 case SuccessNode successNode:
                     _dialogueTuple.questGraphProcessor.HandleSuccessDialogue(_currentDialogueGraph);
                     NextOrEndDialogue(successNode);
@@ -116,6 +119,13 @@ namespace Project.Scripts.NodeSystem.Dialogues
         {
             playerInventory.TakeItem(takeItemNode.Item);
             NextOrEndDialogue(takeItemNode);
+        }
+
+        private void HandleCheckInternFameNode(CheckInternFameNode checkInternFameNode)
+        {
+            // TODO: HANDLE inter result node!
+            // there is multiple output ports
+            NextOrEndDialogue(checkInternFameNode);
         }
 
         private void HandleInternFameNode(InternFameNode internFameNode)
