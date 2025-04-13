@@ -38,6 +38,7 @@ namespace Project.Scripts.NodeSystem.Quests
             processors = new List<QuestGraphProcessor>(questGraphs.Count);
             foreach (var questGraph in questGraphs)
             {
+                if (!questGraph.isQuestActive) continue;
                 var processor = new QuestGraphProcessor(questGraph, this);
                 processor.OnQuestUpdate += HandleProcessorQuestUpdate;
                 processor.OnTimedQuestUpdate += HandleProcessorTimedQuestUpdate;

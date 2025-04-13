@@ -243,6 +243,7 @@ MonoBehaviour:
   - {fileID: 7619738166788556371}
   - {fileID: -522056965444643930}
   - {fileID: -2981569510408253203}
+  isQuestActive: 0
 --- !u!114 &1192140148333293003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,8 +483,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: 1fc5b3e898d21e842889ef0a8ba7c525, type: 2}
-  questName: "SubQuest Back to Valentin\n- \u041F\u043E\u0434\u043F\u0438\u0441\u0430\u0442\u044C
-    \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B \u0443 \u0421\u0415\u041E"
+  questName: "SubQuest Back to Valentin\n- \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F
+    \u043A \u0412\u0430\u043B\u0435\u043D\u0442\u0438\u043D\u0443"
 --- !u!114 &6511605177657725196
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -192,6 +192,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: cfb01b6760310e148ac697f5a84dcf5a, type: 2}
+  questName: "SubQuest Find water for Pavel\n- \u041D\u0430\u043B\u0438\u0442\u044C
+    \u0432\u043E\u0434\u044B \u0434\u043B\u044F \u041F\u0430\u0432\u043B\u0430"
 --- !u!114 &-2530887381412140992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +438,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: ad2da35ea2d50d64ebce55e8ce539047, type: 2}
+  questName: "SubQuest Back to Pavel\n- \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F
+    \u043A \u041F\u0430\u0432\u043B\u0443"
 --- !u!114 &-212960268354493387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +524,7 @@ MonoBehaviour:
   - {fileID: 5781754365509451468}
   - {fileID: -1503934565523005922}
   - {fileID: 8463177525346959919}
+  isQuestActive: 0
 --- !u!114 &134804293946035839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +579,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: f488dce2fd8a5454b8edddfc59bf45f1, type: 2}
+  questName: "Quest Database edits\n* \u041F\u0440\u0430\u0432\u043A\u0438 \u0432
+    \u0431\u0430\u0437\u0435 \u0434\u0430\u043D\u043D\u044B\u0445"
 --- !u!114 &1063964891693657677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +635,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: 5986bdd7931f0bd48b76bf30ba6054ea, type: 2}
+  questName: "SubQuest Talk with Pavel\n- \u041F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u044C\u0442\u044C
+    \u0441 \u043F\u0430\u0432\u043B\u043E\u043C"
 --- !u!114 &1881950167464437181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +691,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: b2fe8b50d7837ed4682989fb0327b669, type: 2}
+  questName: "SubQuest Give water  Pavel\n- \u041E\u0442\u0434\u0430\u0442\u044C
+    \u0432\u043E\u0434\u0443 \u041F\u0430\u0432\u043B\u0443"
 --- !u!114 &2661731779311017053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,6 +802,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: 6a2c1a42e3c0bdd429a418c5daeff0b7, type: 2}
+  questName: "SubQuest Talk with Michael on Fail\n- \u0421\u043A\u0430\u0437\u0430\u0442\u044C
+    \u041C\u0438\u0448\u0435 \u043E \u043F\u0440\u043E\u0430\u0432\u043B\u0435"
 --- !u!114 &8463177525346959919
 MonoBehaviour:
   m_ObjectHideFlags: 0
