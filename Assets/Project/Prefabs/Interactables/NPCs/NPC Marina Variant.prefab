@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1527305254992365947, guid: 6a483ee91cad7a040905f0286e8ddc54, type: 3}
       propertyPath: m_Name
-      value: NPC Valentine Variant
+      value: NPC Marina Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2569567454944184675, guid: 6a483ee91cad7a040905f0286e8ddc54, type: 3}
       propertyPath: npcData
