@@ -26,6 +26,7 @@ namespace Project.Scripts.NPC
         
         public void Interact(PlayerInteractController playerInteractController)
         {
+            if (DialogueManager.Instance.IsDialogueActive) return;
             DialogueManager.Instance.StartDialogue(this);
         }
 

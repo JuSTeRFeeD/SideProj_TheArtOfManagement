@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 8
-    m_Bottom: 8
+    m_Left: 6
+    m_Right: 6
+    m_Top: 16
+    m_Bottom: 16
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -213,8 +213,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -92.005}
-  m_SizeDelta: {x: 600, y: 0}
+  m_AnchoredPosition: {x: 300, y: -100.005}
+  m_SizeDelta: {x: 588, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8033969372642729132
 CanvasRenderer:
