@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Project.Scripts.Fame
@@ -8,6 +9,9 @@ namespace Project.Scripts.Fame
 
         public delegate void FameChangedHandler(int points);
         public event FameChangedHandler FameChanged;
+
+        public delegate void FameChangedDirectionHandler(bool isUp);
+        public event FameChangedDirectionHandler FameChangedDirection;
         
         public static PlayerFame Instance { get; private set; }
 
@@ -24,7 +28,9 @@ namespace Project.Scripts.Fame
         public void AddPoints(int points)
         {
             Debug.Log(points);
+            var previousPoints = CurrentPoints;
             CurrentPoints += points;
+            FameChangedDirection?.Invoke(CurrentPoints > previousPoints);
             FameChanged?.Invoke(CurrentPoints);
         }
     }

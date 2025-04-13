@@ -9,6 +9,7 @@ namespace Project.Scripts.Interactables
 {
     public class InteractableGetItem : MonoBehaviour, IInteractable
     {
+        [SerializeField] private ItemData takeItemOnInteract;
         [SerializeField] private ItemData giveItemOnInteract;
         [SerializeField] private float interactTime = 1.5f;
         [Space]
@@ -39,6 +40,16 @@ namespace Project.Scripts.Interactables
             {
                 return;
             }
+
+            if (takeItemOnInteract)
+            {
+                if (!playerInventory.HasItem(takeItemOnInteract))
+                {
+                    return;
+                }
+                playerInventory.TakeItem(takeItemOnInteract);
+            }
+            
             StartCoroutine(InteractProgress(playerInventory));
         }
 
