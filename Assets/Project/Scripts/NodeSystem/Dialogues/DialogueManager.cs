@@ -89,6 +89,9 @@ namespace Project.Scripts.NodeSystem.Dialogues
                 case FameNode fameNode:
                     HandleFameNode(fameNode);
                     break;
+                case InternFameNode internFameNode:
+                    HandleInternFameNode(internFameNode);
+                    break;
                 case SuccessNode successNode:
                     _dialogueTuple.questGraphProcessor.HandleSuccessDialogue(_currentDialogueGraph);
                     NextOrEndDialogue(successNode);
@@ -113,6 +116,12 @@ namespace Project.Scripts.NodeSystem.Dialogues
         {
             playerInventory.TakeItem(takeItemNode.Item);
             NextOrEndDialogue(takeItemNode);
+        }
+
+        private void HandleInternFameNode(InternFameNode internFameNode)
+        {
+            // TODO: HANDLE INTERN FAME NODE!
+            NextOrEndDialogue(internFameNode);
         }
 
         private void HandleFameNode(FameNode fameNode)
