@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f422ec9bece441d7b7f47cd519d3e706, type: 3}
-  m_Name: _CTO Michail Npc Data
+  m_Name: Backend Dev Pavel Npc Data
   m_EditorClassIdentifier: 
-  npcName: "\u041C\u0438\u0445\u0430\u0438\u043B"
-  icon: {fileID: 1961122853, guid: d531fa86be274a6468a5de2c90f4a9a1, type: 3}
+  npcName: "\u041F\u0430\u0432\u0435\u043B"
+  icon: {fileID: 21300000, guid: ae0939f97ff87d64a8dfa2f03d086391, type: 3}
