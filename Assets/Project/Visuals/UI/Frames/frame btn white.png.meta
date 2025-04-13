@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17ac1e9ac633a2c4f95635282d88d7f9
+guid: 41214fda76084024eb184567bba19e0a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: interact progress fill_0
+      name: Rectangle 168_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 84
-        height: 84
+        width: 804
+        height: 109
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 32, y: 32, z: 32, w: 32}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d3fb428529e84e4599f38cf043ffc73
-      internalID: -1377410948
+      spriteID: f9de586ce4336ec49bd710768fb24094
+      internalID: 134588664
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dfa90792eb74d8f419b6738b9dd60920
+    spriteID: 55ab329151cd95f48b732676807e169d
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      interact progress fill_0: -1377410948
+      Rectangle 168_0: 134588664
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

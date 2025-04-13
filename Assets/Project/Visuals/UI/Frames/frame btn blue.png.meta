@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d531fa86be274a6468a5de2c90f4a9a1
+guid: d1d4f40ea24cf6f4bb2178137bbd62d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 21513e9ba223d68bf936ce07dcb268ff_0
+      name: Rectangle 167_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 972
-        height: 972
+        width: 804
+        height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 32, y: 32, z: 32, w: 32}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83dda6ccbd2b6fe49aef64f8390429bd
-      internalID: 1961122853
+      spriteID: 1c624e18ce61afc4db69ec7e9153958c
+      internalID: 791842761
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7d1ce3a5c94e5744d97202e75655a636
+    spriteID: 5c3e21712da5aac499d1caa829cd2a1f
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      21513e9ba223d68bf936ce07dcb268ff_0: 1961122853
+      Rectangle 167_0: 791842761
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

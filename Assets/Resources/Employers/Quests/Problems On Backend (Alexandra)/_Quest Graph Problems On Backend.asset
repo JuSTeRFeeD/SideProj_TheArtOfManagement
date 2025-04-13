@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Name: Unlock Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: -24}
+  position: {x: 376, y: -24}
   ports:
     keys:
     - input

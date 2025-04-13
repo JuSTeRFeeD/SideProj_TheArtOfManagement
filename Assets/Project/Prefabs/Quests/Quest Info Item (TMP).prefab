@@ -69,7 +69,7 @@ MonoBehaviour:
   m_text: "1. \u043F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u0442\u044C \u0441
     <color=yellow>tommy"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 104b99108e4277542ba04ad3160d985c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 736909672a003144b801f7717782d310, type: 2}
   m_sharedMaterial: {fileID: -8045962496023881573, guid: 104b99108e4277542ba04ad3160d985c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1289197984919754680
