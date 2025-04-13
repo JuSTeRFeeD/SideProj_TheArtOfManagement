@@ -4,7 +4,7 @@ using XNode;
 namespace Project.Scripts.NodeSystem
 {
     [CreateNodeMenu("Intern Fame Node")]
-    [NodeTint("##702b59")]
+    [NodeTint("#702b59")]
     public class InternFameNode : NodeBase
     {
         [Input] 
