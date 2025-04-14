@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Name: Unlock Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1064, y: -8}
+  position: {x: 1272, y: 8}
   ports:
     keys:
     - input
@@ -84,7 +84,7 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   dialogueGraph: {fileID: 11400000, guid: c47e62d1b2500b84cb66f9f642c64c11, type: 2}
-  npcData: {fileID: 11400000, guid: e5406855e432e8440aa64466ac3b35ba, type: 2}
+  npcData: {fileID: 11400000, guid: 661881f8d9b287c47b2f842281866ce6, type: 2}
 --- !u!114 &-6882992500432028402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: Quest Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 216, y: -8}
+  position: {x: 424, y: 8}
   ports:
     keys:
     - input
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: End Timer Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1400, y: 24}
+  position: {x: 1608, y: 40}
   ports:
     keys:
     - input
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: Quest End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1880, y: 40}
+  position: {x: 2088, y: 56}
   ports:
     keys:
     - input
@@ -243,7 +243,7 @@ MonoBehaviour:
   - {fileID: 7619738166788556371}
   - {fileID: -522056965444643930}
   - {fileID: -2981569510408253203}
-  isQuestActive: 0
+  isQuestActive: 1
 --- !u!114 &1192140148333293003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: Unlock Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 536, y: 232}
+  position: {x: 696, y: 280}
   ports:
     keys:
     - input
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: Quest Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: -8}
+  position: {x: 728, y: 8}
   ports:
     keys:
     - input
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: Fame
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 872, y: 248}
+  position: {x: 1032, y: 296}
   ports:
     keys:
     - input
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: Quest Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 792, y: -8}
+  position: {x: 1000, y: 8}
   ports:
     keys:
     - input
@@ -542,7 +542,7 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   dialogueGraph: {fileID: 11400000, guid: 1edf6b6f0159177498a7a778ced8e66b, type: 2}
-  npcData: {fileID: 11400000, guid: e5406855e432e8440aa64466ac3b35ba, type: 2}
+  npcData: {fileID: 11400000, guid: 661881f8d9b287c47b2f842281866ce6, type: 2}
 --- !u!114 &7619738166788556371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: Fame
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1656, y: 8}
+  position: {x: 1864, y: 24}
   ports:
     keys:
     - input
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: Quest End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 280}
+  position: {x: 1256, y: 328}
   ports:
     keys:
     - input

@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4264057679389920735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc6389dd392475093d27a194199d193, type: 3}
+  m_Name: Take Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 600, y: 216}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -4264057679389920735}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 2299247836296283441}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -4264057679389920735}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -1627219606753544146}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  item: {fileID: 11400000, guid: 624b1edba103dfd479f350f83f13e30e, type: 2}
 --- !u!114 &-1627219606753544146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24,7 +68,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 2299247836296283441}
+        node: {fileID: -4264057679389920735}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -63,6 +107,7 @@ MonoBehaviour:
   - {fileID: 2299247836296283441}
   - {fileID: -1627219606753544146}
   - {fileID: 3996115747788870540}
+  - {fileID: -4264057679389920735}
 --- !u!114 &2299247836296283441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +121,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 536, y: 200}
+  position: {x: 328, y: 216}
   ports:
     keys:
     - output
@@ -86,7 +131,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -1627219606753544146}
+        node: {fileID: -4264057679389920735}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
