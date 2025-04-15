@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 3
   m_Name: Water Cooler
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96fbf78c69244128879227ff3781d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeItemOnInteract: {fileID: 0}
   giveItemOnInteract: {fileID: 11400000, guid: 6ee80795096da8b4e806ed7e2fef88bd, type: 2}
   interactTime: 2
   interactProgress: {fileID: 7611410642736509963}
