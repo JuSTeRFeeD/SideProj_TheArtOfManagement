@@ -12,10 +12,12 @@ namespace Project.Scripts.Inventory
 
         private readonly List<UIItemSlot> _slots = new();
         
+        private const int MaxSlotCount = 10;
+        
         private void Start()
         {
             playerInventory.OnInventoryChangeEvent += UpdateInventory;
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < MaxSlotCount; i++)
             {
                 _slots.Add(Instantiate(uiItemSlotPrefab, slotsContainer));
             }
@@ -28,7 +30,10 @@ namespace Project.Scripts.Inventory
             for (i = 0; i < items.Count; i++)
             {
                 if (i >= _slots.Count) break;
-                _slots[i].SetItem(items[i]);
+                if (items[i].DisplayItemInInventory)
+                {
+                    _slots[i].SetItem(items[i]);
+                }
             }
 
             for (; i < _slots.Count; i++)
