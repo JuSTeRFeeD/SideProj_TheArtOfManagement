@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96fbf78c69244128879227ff3781d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeItemOnInteract: {fileID: 0}
   giveItemOnInteract: {fileID: 11400000, guid: 369e882753fa9b648bdf58801bae1382, type: 2}
   interactTime: 4
   interactProgress: {fileID: 835121563437976397}
@@ -71,8 +72,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.00001
+  m_Center: {x: -0.4, y: 0, z: 0}
 --- !u!1001 &1792429775805585106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707033085444523280, guid: 29d2ff71ee4088643b56e70ff038b92f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1707033085444523280, guid: 29d2ff71ee4088643b56e70ff038b92f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -161,7 +162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 409112355330531060, guid: 4cf8617bf4a585c44b3795d9daeca277, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 409112355330531060, guid: 4cf8617bf4a585c44b3795d9daeca277, type: 3}
       propertyPath: m_LocalPosition.y
@@ -254,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3964441115888425476, guid: f4ed137caba05f84a9981e00edb724de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3964441115888425476, guid: f4ed137caba05f84a9981e00edb724de, type: 3}
       propertyPath: m_LocalPosition.y

@@ -57,7 +57,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: -0.07
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &3285574848165817047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0953378a2345bd83ad872c0b72f1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 4.5
+  interactDistance: 5
   interactableMask:
     serializedVersion: 2
     m_Bits: 8
