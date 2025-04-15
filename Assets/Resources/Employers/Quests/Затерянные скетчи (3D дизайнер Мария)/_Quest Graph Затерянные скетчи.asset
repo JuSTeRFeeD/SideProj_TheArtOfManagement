@@ -1,0 +1,401 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8949256833358101434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5316ffdb97c84ba3aedf6feb90cf11d0, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -248, y: -24}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: -8949256833358101434}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 4082434635791426065}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  output: {fileID: 0}
+--- !u!114 &-8385983900469098300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0514146cec041698d345ffd3aebf575, type: 3}
+  m_Name: Quest Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 936, y: 56}
+  ports:
+    keys:
+    - input
+    - outputSuccess
+    - outputFail
+    values:
+    - _fieldName: input
+      _node: {fileID: -8385983900469098300}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputSuccess
+        node: {fileID: 8896009263478466576}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputSuccess
+      _node: {fileID: -8385983900469098300}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -6541261036123257287}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputFail
+      _node: {fileID: -8385983900469098300}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputSuccess: {fileID: 0}
+  outputFail: {fileID: 0}
+  questData: {fileID: 11400000, guid: e55a39039d45a3746a5f8b8f52d21a65, type: 2}
+  questName: "SubQuest \u0421\u043A\u0430\u0437\u0430\u0442\u044C \u041C\u0430\u0440\u0438\u0435
+    \u0447\u0442\u043E \u043D\u0430\u0448\u0435\u043B \u043F\u0430\u043F\u043A\u0443\n-
+    \u0421\u043A\u0430\u0437\u0430\u0442\u044C \u041C\u0430\u0440\u0438\u0438, \u043E
+    \u0442\u043E\u043C \u0447\u0442\u043E \u043D\u0430\u0448\u0435\u043B \u043F\u0430\u043F\u043A\u0443
+    \u0441\u043E \u0441\u043A\u0435\u0442\u0447\u0430\u043C\u0438"
+--- !u!114 &-6541261036123257287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589c49b4212140bc9f07bd221659cd5b, type: 3}
+  m_Name: Unlock Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1208, y: 56}
+  ports:
+    keys:
+    - input
+    - outputSuccess
+    - outputFail
+    values:
+    - _fieldName: input
+      _node: {fileID: -6541261036123257287}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputSuccess
+        node: {fileID: -8385983900469098300}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputSuccess
+      _node: {fileID: -6541261036123257287}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -4759392882925471726}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputFail
+      _node: {fileID: -6541261036123257287}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputSuccess: {fileID: 0}
+  outputFail: {fileID: 0}
+  dialogueGraph: {fileID: 11400000, guid: 5de0aa6d10dc54b459e900fefefc0350, type: 2}
+  npcData: {fileID: 11400000, guid: 17d5aed21d39ef04d989a47e8750dc19, type: 2}
+--- !u!114 &-4759392882925471726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac00f5b7f0d6406289e75062ad938c0f, type: 3}
+  m_Name: Quest End
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1528, y: 72}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: -4759392882925471726}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputSuccess
+        node: {fileID: -6541261036123257287}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4888772e664424a22062049af39eb1, type: 3}
+  m_Name: "_Quest Graph \u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435
+    \u0441\u043A\u0435\u0442\u0447\u0438"
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8949256833358101434}
+  - {fileID: 4082434635791426065}
+  - {fileID: 1210286591028641687}
+  - {fileID: 8896009263478466576}
+  - {fileID: 8851077243920054212}
+  - {fileID: -8385983900469098300}
+  - {fileID: -6541261036123257287}
+  - {fileID: -4759392882925471726}
+  isQuestActive: 1
+--- !u!114 &1210286591028641687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0514146cec041698d345ffd3aebf575, type: 3}
+  m_Name: Quest Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 360, y: -184}
+  ports:
+    keys:
+    - input
+    - outputSuccess
+    - outputFail
+    values:
+    - _fieldName: input
+      _node: {fileID: 1210286591028641687}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputSuccess
+        node: {fileID: 4082434635791426065}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputSuccess
+      _node: {fileID: 1210286591028641687}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 8896009263478466576}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputFail
+      _node: {fileID: 1210286591028641687}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputSuccess: {fileID: 0}
+  outputFail: {fileID: 0}
+  questData: {fileID: 11400000, guid: ede086ea53d951f42bf5c8c27532e9bd, type: 2}
+  questName: "QuestData \u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435
+    \u0441\u043A\u0435\u0442\u0447\u0438\n* \u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435
+    \u0441\u043A\u0435\u0442\u0447\u0438"
+--- !u!114 &4082434635791426065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589c49b4212140bc9f07bd221659cd5b, type: 3}
+  m_Name: Unlock Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -14.537788, y: -27.5042}
+  ports:
+    keys:
+    - input
+    - outputSuccess
+    - outputFail
+    values:
+    - _fieldName: input
+      _node: {fileID: 4082434635791426065}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -8949256833358101434}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputSuccess
+      _node: {fileID: 4082434635791426065}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1210286591028641687}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputFail
+      _node: {fileID: 4082434635791426065}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 8851077243920054212}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputSuccess: {fileID: 0}
+  outputFail: {fileID: 0}
+  dialogueGraph: {fileID: 11400000, guid: 4e5b323d7116e87429c89a44fc360a77, type: 2}
+  npcData: {fileID: 11400000, guid: 17d5aed21d39ef04d989a47e8750dc19, type: 2}
+--- !u!114 &8851077243920054212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac00f5b7f0d6406289e75062ad938c0f, type: 3}
+  m_Name: Quest End
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 408, y: 232}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 8851077243920054212}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputFail
+        node: {fileID: 4082434635791426065}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+--- !u!114 &8896009263478466576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0514146cec041698d345ffd3aebf575, type: 3}
+  m_Name: Quest Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 648, y: -184}
+  ports:
+    keys:
+    - input
+    - outputSuccess
+    - outputFail
+    values:
+    - _fieldName: input
+      _node: {fileID: 8896009263478466576}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outputSuccess
+        node: {fileID: 1210286591028641687}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputSuccess
+      _node: {fileID: 8896009263478466576}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -8385983900469098300}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputFail
+      _node: {fileID: 8896009263478466576}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  outputSuccess: {fileID: 0}
+  outputFail: {fileID: 0}
+  questData: {fileID: 11400000, guid: 0c3fb58bbb967ee498502fc39d50faa3, type: 2}
+  questName: "SubQuest \u041D\u0430\u0439\u0442\u0438 \u043F\u0430\u043F\u043A\u0443\n-
+    \u041F\u043E\u0438\u0441\u043A\u0430\u0442\u044C \u043F\u0430\u043F\u043A\u0443
+    \u043D\u0430 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0435"
