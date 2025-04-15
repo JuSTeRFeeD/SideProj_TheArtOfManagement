@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20485217c0a478ea3eb36cf921ea4da, type: 3}
-  m_Name: "Quest \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B"
+  m_Name: "Quest \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0437\u0430\u043B\u0435\u0436\u0438"
   m_EditorClassIdentifier: 
   isMainQuest: 1
   description: 
   durationSec: 0
-  questName: "\u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B"
+  questName: "\u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0437\u0430\u043B\u0435\u0436\u0438"
   itemInInventory: {fileID: 0}
   targetDialogue: {fileID: 0}
