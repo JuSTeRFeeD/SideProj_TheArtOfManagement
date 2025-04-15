@@ -510,6 +510,7 @@ MonoBehaviour:
   choicesContainer: {fileID: 3039556501055321610}
   playerAvatarCanvasGroup: {fileID: 5988539628188065602}
   npcAvatarCanvasGroup: {fileID: 1868245912125840902}
+  npcAvatarBgImage: {fileID: 5582242685942270163}
   dialogueContainer: {fileID: 3200023273813494627}
   dialogueContainerOnChoicesOffset: {x: -340, y: 0, z: 0}
   fameUpImage: {fileID: 7262269512320973508}

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f422ec9bece441d7b7f47cd519d3e706, type: 3}
+  m_Name: _Phone Npc Data
+  m_EditorClassIdentifier: 
+  npcName: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D"
+  icon: {fileID: 21300000, guid: 43d713faee956074d98c8f473fffc500, type: 3}
