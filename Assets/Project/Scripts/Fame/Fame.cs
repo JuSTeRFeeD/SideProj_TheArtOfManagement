@@ -10,7 +10,7 @@ namespace Project.Scripts.Fame
         public void Add(int value)
         {
             Value += value;
-            OnChangeEvent?.Invoke(Value, Value - value);
+            OnChangeEvent?.Invoke(Value - value, Value);
         }
 
         public void Reset()

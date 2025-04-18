@@ -43,8 +43,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private Vector3 _dialogueContainerDefaultPosition;
         
         [Header("Fame")]
-        [SerializeField] private Image fameUpImage;
-        [SerializeField] private Image fameDownImage;
+        [SerializeField] private RectTransform fameUpImage;
+        [SerializeField] private RectTransform fameDownImage;
         
         private readonly List<Button> _choiceButtons = new();
         private NpcData _npcNpcData;
@@ -71,8 +71,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
         {
             PlayerFame.Instance.mainFame.OnChangeEvent += OnFameChanged;
             
-            fameDownImage.enabled = false;
-            fameUpImage.enabled = false;
+            fameDownImage.gameObject.SetActive(false);
+            fameUpImage.gameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -230,21 +230,29 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private IEnumerator AnimateFame(bool isUp)
         {
             IsAnimationPlaying = true;
-            fameDownImage.enabled = !isUp;
-            fameUpImage.enabled = isUp;
+            fameDownImage.gameObject.SetActive(!isUp);
+            fameUpImage.gameObject.SetActive(isUp);
+            fameDownImage.localScale = Vector3.zero;
+            fameUpImage.localScale = Vector3.zero;
 
+            const float duration = 0.4f;
+            
             if (isUp)
             {
-                fameUpImage.transform.localScale = Vector3.one;
-                yield return fameUpImage.transform
-                    .DOLocalJump(fameUpImage.transform.position, 0.2f, 1, 0.3f)
+                yield return DOTween.Sequence()
+                    .Append(fameUpImage.DOScale(1f, duration))
+                    .Append(fameUpImage.DOShakeAnchorPos(0.2f, 0.2f, 1, 1f))
+                    .Append(fameUpImage.DOScale(0f, duration))
+                    .SetLink(fameUpImage.gameObject)
                     .WaitForCompletion();
             }
             else
             {
-                fameDownImage.transform.localScale = Vector3.one;
-                yield return fameDownImage.transform
-                    .DOLocalJump(fameUpImage.transform.position, 0.2f, 1, 0.3f)
+                yield return DOTween.Sequence()
+                    .Append(fameDownImage.DOScale(1f, duration))
+                    .Append(fameDownImage.DOShakeAnchorPos(0.2f, 0.2f, 1, 1f))
+                    .Append(fameDownImage.DOScale(0f, duration))
+                    .SetLink(fameDownImage.gameObject)
                     .WaitForCompletion();
             }
 

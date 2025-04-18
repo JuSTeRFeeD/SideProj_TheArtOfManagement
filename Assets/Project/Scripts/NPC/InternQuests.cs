@@ -34,6 +34,7 @@ namespace Project.Scripts.NPC
         {
             _remainingQuests.AddRange(internQuestsGraphs);
             _dialogueCompanion = GetComponent<DialogueCompanion>();
+            SetTimer();
         }
 
         private void Update()
@@ -54,6 +55,11 @@ namespace Project.Scripts.NPC
             {
                 TriggerInternQuest();
             }
+            SetTimer();
+        }
+
+        private void SetTimer()
+        {
             _timer = Random.Range(internQuestPopupCooldown.x, internQuestPopupCooldown.y);
         }
 

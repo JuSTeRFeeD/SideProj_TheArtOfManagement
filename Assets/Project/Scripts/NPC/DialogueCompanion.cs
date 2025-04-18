@@ -38,7 +38,6 @@ namespace Project.Scripts.NPC
         public void AddAvailableDialogue(DialogueTuple dialogueTuple)
         {
             _availableDialogues.Add(dialogueTuple);
-            Debug.Log($"[DialogueCompanion] Added new dialogue {dialogueTuple.dialogueGraph.name} | {name} | {_availableDialogues.Count}");
             UpdateAbilityToStartDialogue();
         }
         

@@ -5,7 +5,6 @@ using Project.Scripts.Inventory;
 using Project.Scripts.NodeSystem.Dialogues.Nodes;
 using Project.Scripts.NodeSystem.Quests;
 using Project.Scripts.NPC;
-using Project.Scripts.Scriptable;
 using UnityEngine;
 using XNode;
 
@@ -13,7 +12,6 @@ namespace Project.Scripts.NodeSystem.Dialogues
 {
     public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] private QuestsManager questsManager;
         [SerializeField] private PlayerInventory playerInventory;
         
         public static DialogueManager Instance { get; private set; }
