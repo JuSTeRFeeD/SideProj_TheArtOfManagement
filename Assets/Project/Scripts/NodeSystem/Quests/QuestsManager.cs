@@ -58,8 +58,7 @@ namespace Project.Scripts.NodeSystem.Quests
             // start quests
             foreach (var processor in processors)
             {
-                // TODO: REVERT!!!!
-                // processor.Start(playerInventory);
+                processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();
