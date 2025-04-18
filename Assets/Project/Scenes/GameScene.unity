@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6439fe6fba1477fa3ed0dcaa3261b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questsManager: {fileID: 1857883325}
   playerInventory: {fileID: 937213250}
 --- !u!1001 &11161033
 PrefabInstance:
