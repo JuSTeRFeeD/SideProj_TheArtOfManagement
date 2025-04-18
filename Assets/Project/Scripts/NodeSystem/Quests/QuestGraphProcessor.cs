@@ -45,7 +45,13 @@ namespace Project.Scripts.NodeSystem.Quests
         private readonly List<UnlockedDialogues> _unlockedDialogues = new();
         
         private Coroutine _timedQuestCoroutine;
-        
+
+        public QuestGraphProcessor(QuestGraph questGraph, QuestsManager questsManager)
+        {
+            _questsManager = questsManager;
+            _questGraph = questGraph;
+        }
+
         public bool TryGetRequiredQuestItem(out ItemData itemData)
         {
             itemData = default;
@@ -56,9 +62,9 @@ namespace Project.Scripts.NodeSystem.Quests
                 if (quest.isItemInInventory) continue;
                 itemData = quest.questData.ItemInInventory;
             }
-            return itemData != null;
+            return itemData;
         }
-        
+
         public string GetQuestDescription()
         {
             if (IsQuestEnded) return string.Empty;
@@ -104,12 +110,6 @@ namespace Project.Scripts.NodeSystem.Quests
             return sb.ToString();
         }
 
-        public QuestGraphProcessor(QuestGraph questGraph, QuestsManager questsManager)
-        {
-            _questsManager = questsManager;
-            _questGraph = questGraph;
-        }
-
         public void Start(PlayerInventory playerInventory)
         {
             IsActive = true;
@@ -142,9 +142,8 @@ namespace Project.Scripts.NodeSystem.Quests
 
         private void ProcessNode()
         {
-            if (_currentNode == null) return;
+            if (!_currentNode) return;
             
-            Debug.Log($"Processing node {_currentNode.name}");
             switch (_currentNode)
             {
                 case StartNode startNode:
@@ -165,7 +164,21 @@ namespace Project.Scripts.NodeSystem.Quests
                 case EndTimerQuestNode endTimerQuestNode:
                     ProcessEndTimerQuestNode(endTimerQuestNode);
                     break;
+                case TeleportNpcNode teleportNpcNode:
+                    ProcessTeleportNpcNode(teleportNpcNode);
+                    break;
             }
+        }
+
+        private void ProcessTeleportNpcNode(TeleportNpcNode teleportNpcNode)
+        {
+            if (!_questsManager.dialogueCompanionByNpc.TryGetValue(teleportNpcNode.NpcData, out var dialogueCompanion))
+            {
+                throw new Exception($"Dialogue companion `{teleportNpcNode.NpcData.name}` not found!");
+            }
+            dialogueCompanion.transform.position = teleportNpcNode.TpToPosition;
+            
+            Next(teleportNpcNode);
         }
 
         private void ProcessQuestEndNode(QuestEndNode questEndNode)
@@ -262,7 +275,7 @@ namespace Project.Scripts.NodeSystem.Quests
 
         private void ProcessFameNode(FameNode fameNode)
         {
-            PlayerFame.Instance.AddPoints(fameNode.FameAmount);
+            PlayerFame.Instance.mainFame.Add(fameNode.FameAmount);
             Next(fameNode);
         }
 
@@ -278,7 +291,12 @@ namespace Project.Scripts.NodeSystem.Quests
                     npcData = unlockDialogueNode.NpcData
                 });
                 var tuple = new DialogueTuple(unlockDialogueNode.DialogueGraph, this);
+                Debug.Log($"Added dialogue for npc `{unlockDialogueNode.NpcData.name}` | quest{_questGraph.name}");
                 dialogueCompanion.AddAvailableDialogue(tuple);
+            }
+            else
+            {
+                Debug.LogError($"Dialogue companion for `{unlockDialogueNode.NpcData.name}` not found!");
             }
         }
 
@@ -293,7 +311,7 @@ namespace Project.Scripts.NodeSystem.Quests
 
         public void HandleFailDialogue(DialogueGraph dialogueGraph)
         {
-            if (_currentNode == null) return;
+            if (!_currentNode) return;
             if (_currentNode is not UnlockDialogueNode unlockDialogueNode) return;
             if (unlockDialogueNode.DialogueGraph != dialogueGraph) return;
             
@@ -307,7 +325,7 @@ namespace Project.Scripts.NodeSystem.Quests
 
         public void HandleSuccessDialogue(DialogueGraph dialogueGraph)
         {
-            if (_currentNode == null) return;
+            if (!_currentNode) return;
             if (_currentNode is not UnlockDialogueNode unlockDialogueNode) return;
             if (unlockDialogueNode.DialogueGraph != dialogueGraph) return;
             

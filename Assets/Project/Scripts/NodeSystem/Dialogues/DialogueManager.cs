@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using Project.Scripts.Fame;
 using Project.Scripts.Inventory;
 using Project.Scripts.NodeSystem.Dialogues.Nodes;
 using Project.Scripts.NodeSystem.Quests;
 using Project.Scripts.NPC;
+using Project.Scripts.Scriptable;
 using UnityEngine;
 using XNode;
 
@@ -56,7 +58,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
         private void Update()
         {
-            if (_currentDialogueGraph == null) return;
+            if (!_currentDialogueGraph) return;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Need to click on choice variant to continue
@@ -123,26 +125,48 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
         private void HandleCheckInternFameNode(CheckInternFameNode checkInternFameNode)
         {
-            // TODO: HANDLE inter result node!
-            // there is multiple output ports
-            NextOrEndDialogue(checkInternFameNode);
+            var internFame = PlayerFame.Instance.internFame.Value;
+            for (var index = 0; index < checkInternFameNode.Variants.Count; index++)
+            {
+                var checkVariable = checkInternFameNode.Variants[index];
+                // как сделать переход на один из вариантов?
+                var conditionMet = checkVariable.Operation switch
+                {
+                    VariableCheckOperation.Equal => internFame == checkVariable.FameAmount,
+                    VariableCheckOperation.Less => internFame < checkVariable.FameAmount,
+                    VariableCheckOperation.Greater => internFame > checkVariable.FameAmount,
+                    VariableCheckOperation.LessOrEqual => internFame <= checkVariable.FameAmount,
+                    VariableCheckOperation.GreaterOrEqual => internFame >= checkVariable.FameAmount,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+                
+                if (!conditionMet) continue;
+                var port = checkInternFameNode.GetOutputPort($"variants {index}");
+                if (port.ConnectionCount <= 0) continue;
+                var connection = port.Connection;
+                _currentNode = connection.node;
+                ProcessNode();
+                return;
+            }
+
+            Debug.LogError("Not found any variants of intern fame condition check!");
         }
 
         private void HandleInternFameNode(InternFameNode internFameNode)
         {
-            // TODO: HANDLE INTERN FAME NODE!
+            PlayerFame.Instance.internFame.Add(internFameNode.FameAmount);
             NextOrEndDialogue(internFameNode);
         }
 
         private void HandleFameNode(FameNode fameNode)
         {
-            PlayerFame.Instance.AddPoints(fameNode.FameAmount);
+            PlayerFame.Instance.mainFame.Add(fameNode.FameAmount);
             NextOrEndDialogue(fameNode);
         }
 
         private void ShowDialogue(DialogueNode node)
         {
-            UIDialogue.Instance.ShowDialogue(node.Text, node.SpeakerIsPlayer);
+            UIDialogue.Instance.ShowDialogue(node.Text, node.SpeakerIsPlayer, node.OverrideNpcSpeaker);
             var port = node.GetOutputPort("output");
             _currentNode = port.IsConnected ? port.Connection.node : null;
         }

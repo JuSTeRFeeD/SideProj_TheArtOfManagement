@@ -69,28 +69,43 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
         private void Start()
         {
-            PlayerFame.Instance.FameChangedDirection += OnFameChanged;
+            PlayerFame.Instance.mainFame.OnChangeEvent += OnFameChanged;
+            
+            fameDownImage.enabled = false;
+            fameUpImage.enabled = false;
+        }
+
+        private void OnDestroy()
+        {
+            PlayerFame.Instance.mainFame.OnChangeEvent -= OnFameChanged;
         }
 
         public void StartDialogue(NpcData npcNpcData)
         {
             _npcNpcData = npcNpcData;
             canvas.enabled = true;
-            
-            speakerIcon.sprite = _npcNpcData.Icon;
 
             dialogueContainer.DOKill();
             dialogueContainer.anchoredPosition = _dialogueContainerDefaultPosition;
             _fullTargetText = string.Empty;
         }
 
-        public void ShowDialogue(string text, bool isPlayerSpeaker)
+        public void ShowDialogue(string text, bool isPlayerSpeaker, NpcData overrideSpeakerNpcData = null)
         {
             if (IsAnimationPlaying) return;
             
             DialogueMoveOnChoicesActive(false);
-            
-            speakerNameText.text = _npcNpcData.NpcName;
+
+            if (overrideSpeakerNpcData)
+            {
+                speakerIcon.sprite = overrideSpeakerNpcData.Icon;
+                speakerNameText.text = overrideSpeakerNpcData.NpcName;
+            }
+            else
+            {
+                speakerIcon.sprite = _npcNpcData.Icon;
+                speakerNameText.text = _npcNpcData.NpcName;
+            }
             
             playerAvatarCanvasGroup.alpha = isPlayerSpeaker ? 1f : 0f;
             npcAvatarCanvasGroup.alpha = !isPlayerSpeaker ? 1f : 0f;
@@ -111,6 +126,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
             
             playerAvatarCanvasGroup.alpha = 0f;
             npcAvatarCanvasGroup.alpha = 1f;
+            
+            speakerIcon.sprite = _npcNpcData.Icon;
             speakerNameText.text = _npcNpcData.NpcName;
 
             _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(question, () =>
@@ -204,30 +221,34 @@ namespace Project.Scripts.NodeSystem.Dialogues
             canvas.enabled = false;
         }
 
-        private void OnFameChanged(bool isUp)
+        private void OnFameChanged(int prev, int newVal)
         {
-            StartCoroutine(AnimateFame(isUp));
+            if (prev == newVal) return;
+            StartCoroutine(AnimateFame(prev < newVal));
         }
 
         private IEnumerator AnimateFame(bool isUp)
         {
+            IsAnimationPlaying = true;
             fameDownImage.enabled = !isUp;
             fameUpImage.enabled = isUp;
- 
+
             if (isUp)
             {
-                fameUpImage.transform.localScale = Vector3.zero;
+                fameUpImage.transform.localScale = Vector3.one;
                 yield return fameUpImage.transform
                     .DOLocalJump(fameUpImage.transform.position, 0.2f, 1, 0.3f)
                     .WaitForCompletion();
             }
             else
             {
-                fameDownImage.transform.localScale = Vector3.zero;
+                fameDownImage.transform.localScale = Vector3.one;
                 yield return fameDownImage.transform
                     .DOLocalJump(fameUpImage.transform.position, 0.2f, 1, 0.3f)
                     .WaitForCompletion();
             }
+
+            IsAnimationPlaying = false;
         }
 
         private IEnumerator DisplayDialogueText(string text, Action onComplete = null)

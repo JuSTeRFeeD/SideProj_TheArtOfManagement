@@ -13,6 +13,8 @@ namespace Project.Scripts.Player
 
         private float _delay;
 
+        public bool inProgress;
+
         private void Update()
         {
             Interact();

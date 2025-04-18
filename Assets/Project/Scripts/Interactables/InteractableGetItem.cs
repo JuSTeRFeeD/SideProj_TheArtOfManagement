@@ -61,6 +61,9 @@ namespace Project.Scripts.Interactables
 
         public IEnumerator InteractProgress(PlayerInventory playerInventory)
         {
+            var playerInteractController = playerInventory.GetComponent<PlayerInteractController>();
+            playerInteractController.inProgress = true;
+            
             interactProgress.gameObject.SetActive(true);
             dialogueMarker.SetMarkerActive(false);
             _isCanInteract = false;
@@ -75,6 +78,8 @@ namespace Project.Scripts.Interactables
             interactProgress.gameObject.SetActive(false);
             
             playerInventory.AddItem(giveItemOnInteract);
+            
+            playerInteractController.inProgress = false;
         }
     }
 }

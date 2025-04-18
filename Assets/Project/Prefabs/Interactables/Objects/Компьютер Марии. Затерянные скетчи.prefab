@@ -15,7 +15,7 @@ GameObject:
   m_Name: "\u041A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440 \u041C\u0430\u0440\u0438\u0438.
     \u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435 \u0441\u043A\u0435\u0442\u0447\u0438"
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

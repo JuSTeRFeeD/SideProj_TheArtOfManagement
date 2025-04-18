@@ -19,7 +19,14 @@ namespace Project.Scripts.NodeSystem.Quests
 
         public event Action OnQuestsChange;
         public event Action<QuestGraphProcessor> OnTimedQuestUpdate;
+
+        public static QuestsManager Instance { get; private set; }
         
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             var interactables = FindObjectsByType<InteractableGetItem>(FindObjectsSortMode.None).ToList();
@@ -51,10 +58,20 @@ namespace Project.Scripts.NodeSystem.Quests
             // start quests
             foreach (var processor in processors)
             {
-                processor.Start(playerInventory);
+                // TODO: REVERT!!!!
+                // processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();
+        }
+
+        public QuestGraphProcessor RegisterInternQuest(QuestGraph questGraph)
+        {
+            var processor = new QuestGraphProcessor(questGraph, this);
+            processor.OnQuestUpdate += HandleProcessorQuestUpdate;
+            processor.OnTimedQuestUpdate += HandleProcessorTimedQuestUpdate;
+            processors.Add(processor);
+            return processor;
         }
 
         private void HandleProcessorTimedQuestUpdate(QuestGraphProcessor processor)

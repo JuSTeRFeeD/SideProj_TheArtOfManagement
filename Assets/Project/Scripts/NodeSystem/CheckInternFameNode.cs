@@ -14,7 +14,7 @@ namespace Project.Scripts.NodeSystem
         [SerializeField] private Node input;
 
         [Serializable]
-        public struct Test
+        public struct CheckVariable
         {
             [SerializeField] private int fameAmount;
             [SerializeField] private VariableCheckOperation operation;
@@ -24,6 +24,8 @@ namespace Project.Scripts.NodeSystem
         }
         
         [Output(dynamicPortList = true)]
-        [SerializeField] private List<Test> variants = new();
+        [SerializeField] private List<CheckVariable> variants = new();
+
+        public List<CheckVariable> Variants => variants;
     }
 }

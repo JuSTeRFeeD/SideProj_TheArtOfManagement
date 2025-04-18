@@ -32,12 +32,13 @@ namespace Project.Scripts.NPC
 
         public void SetIsNearest(bool value)
         {
-            dialogueMarker.SetCanInteract(value);
+            if (dialogueMarker) dialogueMarker.SetCanInteract(value);
         }
         
         public void AddAvailableDialogue(DialogueTuple dialogueTuple)
         {
             _availableDialogues.Add(dialogueTuple);
+            Debug.Log($"[DialogueCompanion] Added new dialogue {dialogueTuple.dialogueGraph.name} | {name} | {_availableDialogues.Count}");
             UpdateAbilityToStartDialogue();
         }
         
@@ -54,20 +55,20 @@ namespace Project.Scripts.NPC
             }
         }
 
-        public void UpdateAbilityToStartDialogue()
+        private void UpdateAbilityToStartDialogue()
         {
-            dialogueMarker.SetMarkerActive(HasAvailableDialogues);
+            if (dialogueMarker) dialogueMarker.SetMarkerActive(HasAvailableDialogues);
         }
 
         public DialogueTuple GetDialogue()
         {
             if (_availableDialogues.Count == 0) 
-                Debug.LogError("[DialogueCompanion] No dialogues available");
+                Debug.LogError($"[DialogueCompanion] No dialogues available `{name}`");
     
             var dialogue = _availableDialogues[0];
             _availableDialogues.RemoveAt(0);
     
-            dialogueMarker.SetMarkerActive(false);
+            if (dialogueMarker) dialogueMarker.SetMarkerActive(false);
             UpdateAbilityToStartDialogue();
             return dialogue;
         }
