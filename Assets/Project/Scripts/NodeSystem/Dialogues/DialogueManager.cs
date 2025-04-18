@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using Project.Scripts.Fame;
 using Project.Scripts.Inventory;
@@ -153,13 +154,22 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private void HandleInternFameNode(InternFameNode internFameNode)
         {
             PlayerFame.Instance.internFame.Add(internFameNode.FameAmount);
-            NextOrEndDialogue(internFameNode);
+            StartCoroutine(WaitDialogueAnimationToNext(internFameNode));
         }
 
         private void HandleFameNode(FameNode fameNode)
         {
             PlayerFame.Instance.mainFame.Add(fameNode.FameAmount);
-            NextOrEndDialogue(fameNode);
+            StartCoroutine(WaitDialogueAnimationToNext(fameNode));
+        }
+
+        private IEnumerator WaitDialogueAnimationToNext(Node node)
+        {
+            while (UIDialogue.Instance.IsAnimationPlaying)
+            {
+                yield return null;
+            }
+            NextOrEndDialogue(node);
         }
 
         private void ShowDialogue(DialogueNode node)
