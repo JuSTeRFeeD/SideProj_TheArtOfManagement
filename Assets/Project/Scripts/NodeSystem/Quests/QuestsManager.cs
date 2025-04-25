@@ -6,6 +6,7 @@ using Project.Scripts.Inventory;
 using Project.Scripts.NPC;
 using Project.Scripts.Scriptable;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Project.Scripts.NodeSystem.Quests
 {
@@ -21,6 +22,13 @@ namespace Project.Scripts.NodeSystem.Quests
         public event Action<QuestGraphProcessor> OnTimedQuestUpdate;
 
         public static QuestsManager Instance { get; private set; }
+
+        [SerializeField] private int maxActiveQuestsCount = 3;
+        [SerializeField] private float checkIntervalSeconds = 5f;
+        private float _currentInterval = 0f;
+        private int _activeQuestsCount = 0;
+        private int _timedQuestsCount = 0;
+        private List<QuestGraphProcessor> _availableQuests = new();
         
         private void Awake()
         {
@@ -53,15 +61,55 @@ namespace Project.Scripts.NodeSystem.Quests
                 processor.OnQuestUpdate += HandleProcessorQuestUpdate;
                 processor.OnTimedQuestUpdate += HandleProcessorTimedQuestUpdate;
                 processors.Add(processor);
-            }
-            
-            // start quests
-            foreach (var processor in processors)
-            {
-                processor.Start(playerInventory);
+                
+                _availableQuests.Add(processor);
+                processor.OnQuestComplete += OnQuestCompleted;
             }
             
             HandleProcessorQuestUpdate();
+        }
+
+        private void OnQuestCompleted(QuestGraphProcessor processor)
+        {
+            _activeQuestsCount--;
+            if (processor.isTimedQuest) _timedQuestsCount--;
+            processors.Remove(processor);
+        }
+        
+        private void Update()
+        {
+            _currentInterval += Time.deltaTime;
+            if (_currentInterval < checkIntervalSeconds) return;
+            _currentInterval = 0f;
+            
+            if (_activeQuestsCount < maxActiveQuestsCount)
+            {
+                UnlockRandomQuest();
+            }
+        }
+
+        private void UnlockRandomQuest()
+        {
+            if (_activeQuestsCount == maxActiveQuestsCount) return;
+
+            while (_availableQuests.Count > 0)
+            {
+                var index = Random.Range(0, _availableQuests.Count);
+                var processor = _availableQuests[index];
+                
+                // Prevent multiple timed quests
+                if (_timedQuestsCount > 0 && processor.isTimedQuest)
+                {
+                    if (_availableQuests.Count == 1) return;
+                    continue;
+                }
+                
+                processor.Start(playerInventory);
+                if (processor.isTimedQuest) _timedQuestsCount++;
+                _activeQuestsCount++;
+                _availableQuests.RemoveAt(index);
+                return;
+            }
         }
 
         public QuestGraphProcessor RegisterInternQuest(QuestGraph questGraph)

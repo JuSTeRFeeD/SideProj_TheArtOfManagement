@@ -36,10 +36,12 @@ namespace Project.Scripts.NodeSystem.Quests
         
         private readonly List<QuestTuple> _quests = new();
         public event Action OnQuestUpdate;
+        public event Action<QuestGraphProcessor> OnQuestComplete;
         public event Action<QuestGraphProcessor> OnTimedQuestUpdate;
         
         public bool IsActive { get; private set; } = false;
         public bool IsQuestEnded { get; private set; } = false;
+        public readonly bool isTimedQuest; 
 
         private float _timer;
         private readonly List<UnlockedDialogues> _unlockedDialogues = new();
@@ -50,6 +52,13 @@ namespace Project.Scripts.NodeSystem.Quests
         {
             _questsManager = questsManager;
             _questGraph = questGraph;
+            
+            isTimedQuest = false;
+            foreach (var _ in _questGraph.nodes.FindAll(x => x is QuestStartNode).Select(questStartNode => questStartNode as QuestStartNode).Where(node => node.QuestData.DurationSec > 0))
+            {
+                isTimedQuest = true;
+                break;
+            }
         }
 
         public bool TryGetRequiredQuestItem(out ItemData itemData)
@@ -192,6 +201,7 @@ namespace Project.Scripts.NodeSystem.Quests
             _currentNode = null;
             IsQuestEnded = true;
             OnQuestUpdate?.Invoke();
+            OnQuestComplete?.Invoke(this);
         }
 
         private void ProcessQuestStartNode(QuestStartNode questStartNode)
