@@ -8004,14 +8004,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC Marya Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 8800252039826961430, guid: c6ae7997fe5c22e4da64909798056616, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8800252039826961430, guid: c6ae7997fe5c22e4da64909798056616, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.89
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
