@@ -209,7 +209,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 1503028567105137425}
+        node: {fileID: -2357690924513557544}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -365,6 +365,52 @@ MonoBehaviour:
     \u043F\u043E\u0439\u043C\u0430\u043B\u0430. \u0422\u0430\u043A \u0447\u0442\u043E
     \u043F\u0440\u043E\u0441\u0442\u043E \u043D\u0435 \u043E\u0431\u0440\u0430\u0449\u0430\u0439
     \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u044F"
+--- !u!114 &-2357690924513557544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967d632339834646b7d9460a30d191ee, type: 3}
+  m_Name: Show Quest Title
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -632, y: -56}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -2357690924513557544}
+      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 1503028567105137425}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -2357690924513557544}
+      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -4275133855540288592}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  questTitle: "\u0412\u0438\u0440\u0443\u0441\u043D\u043E\u0435 \u0432\u043B\u0438\u044F\u043D\u0438\u0435"
 --- !u!114 &-1519201594539384302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +487,7 @@ MonoBehaviour:
   - {fileID: -8115810486202808064}
   - {fileID: -6059814405547433564}
   - {fileID: 1173937948144488853}
+  - {fileID: -2357690924513557544}
 --- !u!114 &745143713100814710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +594,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -536, y: -200}
+  position: {x: -824, y: -232}
   ports:
     keys:
     - output
@@ -557,7 +604,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -4275133855540288592}
+        node: {fileID: -2357690924513557544}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
