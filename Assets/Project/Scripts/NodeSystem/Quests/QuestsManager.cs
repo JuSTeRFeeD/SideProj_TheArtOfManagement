@@ -73,9 +73,6 @@ namespace Project.Scripts.NodeSystem.Quests
                 
                 _availableQuests.Add(processor);
                 processor.OnQuestComplete += OnQuestCompleted;
-                
-                // TODO[!!!] REMOVE TEXT LINE!!!
-                processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();
