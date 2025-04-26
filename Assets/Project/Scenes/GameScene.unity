@@ -23788,6 +23788,7 @@ MonoBehaviour:
   gameFinishedCanvas: {fileID: 281889999}
   gameFinishedCanvasGroup: {fileID: 281889996}
   menuButton: {fileID: 572847581}
+  elapsedTime: {fileID: 5906736891040670414}
   rightAnswersMain: {fileID: 145222288}
   wrongAnswersMain: {fileID: 220749023}
   rightAnswersIntern: {fileID: 805122149}
@@ -36754,6 +36755,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15e45032398849439db1bcab0b45684, type: 3}
+--- !u!114 &5906736891040670414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3908356065494092836, guid: f15e45032398849439db1bcab0b45684, type: 3}
+  m_PrefabInstance: {fileID: 5906736891040670413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6233707296712104214
 PrefabInstance:
   m_ObjectHideFlags: 0

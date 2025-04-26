@@ -19,7 +19,9 @@ namespace Project.Scripts
         [SerializeField] private Canvas gameFinishedCanvas;
         [SerializeField] private CanvasGroup gameFinishedCanvasGroup;
         [SerializeField] private Button menuButton;
-        [Header("Text")] 
+        [Header("Text")]
+        [SerializeField] private TextMeshProUGUI elapsedTime;
+        [Space]
         [SerializeField] private TextMeshProUGUI rightAnswersMain;
         [SerializeField] private TextMeshProUGUI wrongAnswersMain;
         [Space]
@@ -73,6 +75,11 @@ namespace Project.Scripts
 
         private void CalculateScore()
         {
+            var totalTimeInSeconds = PlayTime.Instance.GetElapsedTime();
+            var minutes = Mathf.FloorToInt(totalTimeInSeconds / 60);
+            var seconds = Mathf.FloorToInt(totalTimeInSeconds % 60);
+            elapsedTime.text = $"Время прохождения: {minutes:00}:{seconds:00}";
+            
             rightAnswersMain.text = $"Правильных ответов: {PlayerFame.Instance.mainFame.RightAnswersCount}";
             wrongAnswersMain.text = $"Неправильных ответов: {PlayerFame.Instance.mainFame.WrongAnswersCount}";
             rightAnswersIntern.text = $"Правильных ответов стажёру: {PlayerFame.Instance.internFame.RightAnswersCount}";
