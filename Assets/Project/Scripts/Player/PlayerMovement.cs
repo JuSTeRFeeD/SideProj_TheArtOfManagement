@@ -20,8 +20,11 @@ namespace Project.Scripts.Player
         private static readonly int MoveSpeed = Animator.StringToHash("moveSpeed");
         private static readonly int IsRun = Animator.StringToHash("isRun");
 
+        private PlayerInteractController _playerInteractController;
+        
         private void Start()
         {
+            _playerInteractController = GetComponent<PlayerInteractController>();
             _mainCamera = Camera.main;
             agent.speed = walkSpeed;
             if (_mainCamera == null)
@@ -32,7 +35,16 @@ namespace Project.Scripts.Player
 
         private void Update()
         {
-            if (DialogueManager.Instance.IsDialogueActive) return;
+            // Prevent the player from moving while interacting or during a dialogue
+            if (_playerInteractController.inProgress || DialogueManager.Instance.IsDialogueActive)
+            {
+                agent.destination = transform.position;
+                animator.SetBool(IsWalk, false);
+                animator.SetBool(IsRun, false);
+                animator.SetFloat(MoveSpeed, 0f);
+                return;
+            }
+            
             MovePlayer();
         }
 
