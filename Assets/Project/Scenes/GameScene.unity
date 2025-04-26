@@ -30357,6 +30357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 937213250}
+  maxActiveQuestsCount: 3
+  checkIntervalSeconds: 10
 --- !u!1001 &1872201498
 PrefabInstance:
   m_ObjectHideFlags: 0

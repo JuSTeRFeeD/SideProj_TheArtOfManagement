@@ -23,8 +23,9 @@ namespace Project.Scripts.NodeSystem.Quests
 
         public static QuestsManager Instance { get; private set; }
 
+        [Header("Quest Settings")]
         [SerializeField] private int maxActiveQuestsCount = 3;
-        [SerializeField] private float checkIntervalSeconds = 5f;
+        [SerializeField] private float checkIntervalSeconds = 10f;
         private float _currentInterval = 0f;
         private int _activeQuestsCount = 0;
         private int _timedQuestsCount = 0;
@@ -78,6 +79,14 @@ namespace Project.Scripts.NodeSystem.Quests
         
         private void Update()
         {
+            // Instantly unlock 1 quest
+            if (_activeQuestsCount == 0)
+            {
+                UnlockRandomQuest();
+                _currentInterval = 0f;
+            }
+            
+            // Interval to unlock quests
             _currentInterval += Time.deltaTime;
             if (_currentInterval < checkIntervalSeconds) return;
             _currentInterval = 0f;
