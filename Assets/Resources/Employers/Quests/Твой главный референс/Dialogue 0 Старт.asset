@@ -104,7 +104,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 593518325343603955}
+        node: {fileID: 2393333456470180164}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 9045860951184264077}
   - {fileID: -2633201625482847063}
   - {fileID: 5712864944079871608}
+  - {fileID: 2393333456470180164}
 --- !u!114 &593518325343603955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +323,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -315.5, y: 58.5}
+  position: {x: -536, y: 56}
   ports:
     keys:
     - output
@@ -332,7 +333,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -1235199433976580216}
+        node: {fileID: 2393333456470180164}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -436,6 +437,53 @@ MonoBehaviour:
     \u0410 \u0442\u043E \u044F \u043D\u0438\u043A\u0430\u043A \u0440\u0435\u0444\u0435\u0440\u0435\u043D\u0441
     \u043D\u0435 \u043C\u043E\u0433\u0443 \u043D\u0430\u0439\u0442\u0438"
   overrideNpcSpeaker: {fileID: 0}
+--- !u!114 &2393333456470180164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967d632339834646b7d9460a30d191ee, type: 3}
+  m_Name: Show Quest Title
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -280, y: 56}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 2393333456470180164}
+      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 593518325343603955}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 2393333456470180164}
+      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -1235199433976580216}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: {fileID: 0}
+  output: {fileID: 0}
+  questTitle: "\u0422\u0432\u043E\u0439 \u0433\u043B\u0430\u0432\u043D\u044B\u0439
+    \u0440\u0435\u0444\u0435\u0440\u0435\u043D\u0441"
 --- !u!114 &2770816202301195214
 MonoBehaviour:
   m_ObjectHideFlags: 0

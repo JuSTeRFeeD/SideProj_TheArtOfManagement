@@ -75,6 +75,9 @@ namespace Project.Scripts.NodeSystem.Dialogues
                 case StartNode startNode:
                     NextOrEndDialogue(startNode);
                     break;
+                case ShowQuestTitleNode showQuestTitleNode:
+                    HandleQuestTitleNode(showQuestTitleNode);
+                    break;
                 case DialogueNode dialogueNode:
                     ShowDialogue(dialogueNode);
                     break;
@@ -108,6 +111,12 @@ namespace Project.Scripts.NodeSystem.Dialogues
                     Debug.Log("process unknown node");
                     break;
             }
+        }
+
+        private void HandleQuestTitleNode(ShowQuestTitleNode showQuestTitleNode)
+        {
+            UIDialogue.Instance.ShowQuestName(showQuestTitleNode.QuestTitle);
+            NextOrEndDialogue(showQuestTitleNode);
         }
 
         private void HandleGiveItem(GiveItemNode giveItemNode)

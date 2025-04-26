@@ -16,7 +16,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
 
         [Header("Dialogue")]
         [SerializeField] private Canvas canvas;
-
+        [Space]
+        [SerializeField] private TextMeshProUGUI questNameText;
         [Space] 
         [SerializeField] private float charsPerSecond = 20f;
         [SerializeField] private TextMeshProUGUI skipDialogueAnimText;
@@ -65,6 +66,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
             playerSpeakerNameText.text = playerNpcData.NpcName;
             
             _dialogueContainerDefaultPosition = dialogueContainer.anchoredPosition;
+            questNameText.enabled = false;
         }
 
         private void Start()
@@ -88,6 +90,17 @@ namespace Project.Scripts.NodeSystem.Dialogues
             dialogueContainer.DOKill();
             dialogueContainer.anchoredPosition = _dialogueContainerDefaultPosition;
             _fullTargetText = string.Empty;
+        }
+
+        public void ShowQuestName(string questName)
+        {
+            questNameText.enabled = true;
+            questNameText.text = questName;
+            questNameText.color = Color.clear;
+            DOTween.Sequence()
+                .Append(questNameText.DOColor(Color.white, 0.5f))
+                .AppendInterval(2f)
+                .Append(questNameText.DOColor(Color.clear, 0.5f));
         }
 
         public void ShowDialogue(string text, bool isPlayerSpeaker, NpcData overrideSpeakerNpcData = null)
