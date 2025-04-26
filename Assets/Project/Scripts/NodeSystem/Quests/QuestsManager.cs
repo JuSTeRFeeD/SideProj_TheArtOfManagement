@@ -15,6 +15,7 @@ namespace Project.Scripts.NodeSystem.Quests
         [SerializeField] private PlayerInventory playerInventory;
         
         public readonly Dictionary<ItemData, InteractableGetItem> interactablesToGetItem = new();
+        public readonly Dictionary<ItemData, InteractDance> interactableDance = new();
         public readonly Dictionary<NpcData, DialogueCompanion> dialogueCompanionByNpc = new();
         public List<QuestGraphProcessor> processors = new();
 
@@ -45,6 +46,11 @@ namespace Project.Scripts.NodeSystem.Quests
             {
                 interactablesToGetItem.Add(interactable.GiveItemAfterInteract, interactable);
             }
+            var interactDance = FindObjectsByType<InteractDance>(FindObjectsSortMode.None).ToList();
+            foreach (var dance in interactDance)
+            {
+                interactableDance.Add(dance.GiveItemAfterInteract, dance);
+            }
             
             var dialogueCompanions = FindObjectsByType<DialogueCompanion>(FindObjectsSortMode.None).ToList();
             foreach (var dialogueCompanion in dialogueCompanions)
@@ -67,6 +73,9 @@ namespace Project.Scripts.NodeSystem.Quests
                 
                 _availableQuests.Add(processor);
                 processor.OnQuestComplete += OnQuestCompleted;
+                
+                // TODO[!!!] REMOVE TEXT LINE!!!
+                processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();
@@ -151,6 +160,10 @@ namespace Project.Scripts.NodeSystem.Quests
                     if (interactablesToGetItem.TryGetValue(item, out var interactable))
                     {
                         interactable.SetCanInteract(true);
+                    }
+                    if (interactableDance.TryGetValue(item, out var dance))
+                    {
+                        dance.SetCanInteract(true);
                     }
                 }
             }

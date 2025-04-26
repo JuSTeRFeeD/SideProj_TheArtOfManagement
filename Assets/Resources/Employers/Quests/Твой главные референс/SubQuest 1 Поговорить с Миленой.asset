@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e20485217c0a478ea3eb36cf921ea4da, type: 3}
-  m_Name: QuestData Alexandra Problems On Backend
+  m_Name: "SubQuest 1 \u041F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u0442\u044C
+    \u0441 \u041C\u0438\u043B\u0435\u043D\u043E\u0439"
   m_EditorClassIdentifier: 
-  isMainQuest: 1
-  description: 
-  durationSec: 30
-  questName: "\u041F\u0440\u043E\u0431\u043B\u0435\u043C\u044B \u043D\u0430 \u0431\u044D\u043A\u0435"
+  isMainQuest: 0
+  description: "\u041F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u0442\u0435 \u0441
+    \u041C\u0438\u043B\u0435\u043D\u043E\u0439"
+  durationSec: 0
+  questName: 
   itemInInventory: {fileID: 0}
-  targetDialogue: {fileID: 0}
+  targetDialogue: {fileID: 11400000, guid: 97b3de14a30c161449c12902e3540435, type: 2}

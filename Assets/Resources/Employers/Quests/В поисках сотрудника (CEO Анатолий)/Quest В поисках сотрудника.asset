@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMainQuest: 1
   description: 
-  durationSec: 10
+  durationSec: 60
   questName: "\u0412 \u043F\u043E\u0438\u0441\u043A\u0430\u0445 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A\u0430"
   itemInInventory: {fileID: 0}
   targetDialogue: {fileID: 0}

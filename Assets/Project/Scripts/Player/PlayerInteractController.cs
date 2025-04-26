@@ -8,7 +8,7 @@ namespace Project.Scripts.Player
         [SerializeField] private float interactDistance = 4.0f;
         [SerializeField] private LayerMask interactableMask;
         
-        private Collider[] _results = new Collider[30];
+        private readonly Collider[] _results = new Collider[64];
         private IInteractable _currentInteractable;
 
         private float _delay;

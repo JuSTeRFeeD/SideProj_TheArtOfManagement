@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takeItemOnInteract: {fileID: 0}
   giveItemOnInteract: {fileID: 11400000, guid: 6ee80795096da8b4e806ed7e2fef88bd, type: 2}
-  interactTime: 2
+  interactTime: 4
   interactProgress: {fileID: 7611410642736509963}
   dialogueMarker: {fileID: 3575573948213150199}
 --- !u!135 &4889996939219273199

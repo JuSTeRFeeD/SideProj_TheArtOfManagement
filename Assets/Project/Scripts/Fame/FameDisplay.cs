@@ -14,6 +14,11 @@ namespace Project.Scripts.Fame
             FameChanged(0, 0);
             if (mainFame) PlayerFame.Instance.mainFame.OnChangeEvent += FameChanged;
             else PlayerFame.Instance.internFame.OnChangeEvent += FameChanged;
+            
+            #if UNITY_EDITOR
+            #else
+            fameText.gameObject.SetActive(false);
+            #endif
         }
 
         private void FameChanged(int prev, int newVal)
