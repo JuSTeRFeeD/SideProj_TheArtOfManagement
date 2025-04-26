@@ -31,6 +31,8 @@ namespace Project.Scripts.NodeSystem.Quests
         private int _timedQuestsCount = 0;
         private List<QuestGraphProcessor> _availableQuests = new();
         
+        public event Action AllQuestsCompleted;
+        
         private void Awake()
         {
             Instance = this;
@@ -75,6 +77,9 @@ namespace Project.Scripts.NodeSystem.Quests
             _activeQuestsCount--;
             if (processor.isTimedQuest) _timedQuestsCount--;
             processors.Remove(processor);
+            
+            if (_availableQuests.Count == 0)
+                AllQuestsCompleted?.Invoke();
         }
         
         private void Update()
