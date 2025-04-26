@@ -8,10 +8,13 @@ namespace Project.Scripts.NPC
     {
         [SerializeField] private Animator animator;
 
+        [SerializeField] private bool isSitting;
+        
         // Idle randomizer
         [SerializeField] private bool isIdleStay;
         private float _delay;
         private static readonly int RandomIdle = Animator.StringToHash("randomIdle");
+        private static readonly int IsSit = Animator.StringToHash("isSit");
 
         private void OnValidate()
         {
@@ -22,6 +25,7 @@ namespace Project.Scripts.NPC
         {
             SetRandDelay();
             if (isIdleStay) SetRandomIdle();
+            if (isSitting) animator.SetBool(IsSit, true);
         }
 
         private void SetRandDelay() => _delay = Random.Range(1, 5);
