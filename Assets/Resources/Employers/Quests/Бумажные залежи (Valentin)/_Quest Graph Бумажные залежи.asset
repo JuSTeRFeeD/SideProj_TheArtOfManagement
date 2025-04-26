@@ -200,8 +200,8 @@ MonoBehaviour:
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: 8e1dcd1f795215f419dc7d5977ca6eed, type: 2}
-  questName: "Quest \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B\n*
-    \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B"
+  questName: "Quest \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0437\u0430\u043B\u0435\u0436\u0438\n*
+    \u0411\u0443\u043C\u0430\u0436\u043D\u044B\u0435 \u0437\u0430\u043B\u0435\u0436\u0438"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -316.5, y: -105}
+  position: {x: -456, y: -120}
   ports:
     keys:
     - output
