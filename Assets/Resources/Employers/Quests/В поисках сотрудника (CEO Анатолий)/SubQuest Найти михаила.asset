@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "SubQuest \u041D\u0430\u0439\u0442\u0438 \u043C\u0438\u0445\u0430\u0438\u043B\u0430"
   m_EditorClassIdentifier: 
   isMainQuest: 0
-  description: "\u041D\u0430\u0439\u0442\u0438 \u043C\u0438\u0445\u0430\u0438\u043B\u0430"
+  description: "\u041D\u0430\u0439\u0442\u0438 \u041C\u0438\u0445\u0430\u0438\u043B\u0430"
   durationSec: 0
   questName: 
   itemInInventory: {fileID: 0}

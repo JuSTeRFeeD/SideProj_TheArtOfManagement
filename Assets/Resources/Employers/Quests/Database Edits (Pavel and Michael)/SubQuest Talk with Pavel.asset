@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMainQuest: 0
   description: "\u041F\u043E\u0433\u043E\u0432\u043E\u0440\u0438\u044C\u0442\u044C
-    \u0441 \u043F\u0430\u0432\u043B\u043E\u043C"
+    \u0441 \u041F\u0430\u0432\u043B\u043E\u043C"
   durationSec: 0
   questName: 
   itemInInventory: {fileID: 0}
