@@ -357,7 +357,7 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   npcData: {fileID: 11400000, guid: 149adf3c52af7a14f97b4de0ad1c11c7, type: 2}
-  tpToPosition: {x: 4, y: 0, z: 1}
+  tpToPosition: {x: 19.238, y: 0, z: 12.587}
 --- !u!114 &2383826947773696072
 MonoBehaviour:
   m_ObjectHideFlags: 0
