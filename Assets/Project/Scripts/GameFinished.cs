@@ -92,7 +92,7 @@ namespace Project.Scripts
             FindResultText("<b>Общая статистика:</b>\n", mainFameResultTexts, mainFameValue, sb, totalMainQuests);
 
             var internFameValue = PlayerFame.Instance.internFame.Value;
-            FindResultText("<b>Общая статистика по стажёру:</b>\n", internFameResultTexts, internFameValue, sb,
+            FindResultText("<b>Статистика по стажёру:</b>\n", internFameResultTexts, internFameValue, sb,
                 totalInternQuests);
         }
 
