@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameDesigner Sofia NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u0421\u043E\u0444\u0438\u044F"
-  profession: "\u0418\u0433\u0440\u043E\u0432\u043E\u0439 \u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440"
+  profession: "\u0413\u0435\u0439\u043C\u0434\u0438\u0437\u0430\u0439\u043D\u0435\u0440"
   icon: {fileID: 21300000, guid: 4997997348a225347a7a95fa8582c9bf, type: 3}
