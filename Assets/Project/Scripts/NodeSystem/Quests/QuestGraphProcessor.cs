@@ -99,8 +99,7 @@ namespace Project.Scripts.NodeSystem.Quests
                 var questTuple = _quests[index];
                 if (index == 0)
                 {
-                    sb.Append(index + 1);
-                    sb.Append(". ");
+                    sb.Append("[*] ");
                     sb.Append(questTuple.questData.QuestName);
 
                     if (questTuple.questData.DurationSec > 0)

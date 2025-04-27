@@ -5,6 +5,7 @@ using Project.Scripts.Interactables;
 using Project.Scripts.Inventory;
 using Project.Scripts.NPC;
 using Project.Scripts.Scriptable;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -92,8 +93,18 @@ namespace Project.Scripts.NodeSystem.Quests
             if (processor.isTimedQuest) _timedQuestsCount--;
             processors.Remove(processor);
             
-            if (_availableQuests.Count == 0)
+            if (_availableQuests.Count == 0 && _activeQuestsCount <= 0)
                 AllQuestsCompleted?.Invoke();
+        }
+
+        [Button]
+        [InfoBox("Нужно чтобы был взят 1 timed квест чтобы прокнуло")]
+        private void FastFinish()
+        {
+            var buff = _availableQuests[0];
+            _availableQuests.Clear();
+            _activeQuestsCount = 1;
+            OnQuestCompleted(buff);
         }
         
         private void Update()
@@ -120,7 +131,7 @@ namespace Project.Scripts.NodeSystem.Quests
 
         private void UnlockRandomQuest()
         {
-            if (_activeQuestsCount == maxActiveQuestsCount) return;
+            if (_activeQuestsCount >= maxActiveQuestsCount) return;
 
             while (_availableQuests.Count > 0)
             {
