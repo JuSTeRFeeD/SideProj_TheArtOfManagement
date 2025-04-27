@@ -80,11 +80,11 @@ namespace Project.Scripts
             var seconds = Mathf.FloorToInt(totalTimeInSeconds % 60);
             elapsedTime.text = $"<b>Время прохождения:</b> {minutes:00}:{seconds:00}";
             
-            rightAnswersMain.text = $"<b>Правильных ответов:</b> {PlayerFame.Instance.mainFame.RightAnswersCount}";
-            wrongAnswersMain.text = $"<b>Неправильных ответов:</b> {PlayerFame.Instance.mainFame.WrongAnswersCount}";
-            rightAnswersIntern.text = $"<b>Правильных ответов стажёру:</b> {PlayerFame.Instance.internFame.RightAnswersCount}";
+            rightAnswersMain.text = $"<b>Количество правильных решений основных задач:</b> {PlayerFame.Instance.mainFame.RightAnswersCount}";
+            wrongAnswersMain.text = $"<b>Количество неправильных решений основных задач:</b> {PlayerFame.Instance.mainFame.WrongAnswersCount}";
+            rightAnswersIntern.text = $"<b>Количество правильных ответов стажёру:</b> {PlayerFame.Instance.internFame.RightAnswersCount}";
             wrongAnswersIntern.text =
-                $"<b>Неправильных ответов стажёру:</b> {PlayerFame.Instance.internFame.WrongAnswersCount}";
+                $"<b>Количество неправильных ответов стажёру:</b> {PlayerFame.Instance.internFame.WrongAnswersCount}";
 
             var sb = new StringBuilder();
 
