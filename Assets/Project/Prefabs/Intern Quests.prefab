@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e48b87688547558cefcaed517c1b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  internQuestPopupCooldown: {x: 60, y: 60}
+  internQuestPopupCooldown: {x: 5, y: 5}
   chance: 100
   playerInteractController: {fileID: 0}
   finalQuestGraph: {fileID: 11400000, guid: 0a6a5e8860520cf4b98322c136e0d465, type: 2}
