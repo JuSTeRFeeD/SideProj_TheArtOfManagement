@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f422ec9bece441d7b7f47cd519d3e706, type: 3}
-  m_Name: Frontent Dev Alexandra Npc Data
+  m_Name: Frontend Dev Alexandra Npc Data
   m_EditorClassIdentifier: 
   npcName: "\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0430"
+  profession: "Frontentd \u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A"
   icon: {fileID: 21300000, guid: 2e01e60a533b5e249be352818bfc1f4f, type: 3}

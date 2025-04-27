@@ -35755,6 +35755,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3115325775616106071, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 42.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 37.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498919546796559704, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22
+      objectReference: {fileID: 0}
     - target: {fileID: 7733249850656033212, guid: 182f797b1714b5046a8df33593bc732a, type: 3}
       propertyPath: m_Pivot.x
       value: 0

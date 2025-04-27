@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: VR-AR dev Konstantin NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u041A\u043E\u043D\u0441\u0442\u0430\u043D\u0442\u0438\u043D"
+  profession: "VR/AR \u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A"
   icon: {fileID: 21300000, guid: 95acd1d55b3968a45b11b84215a591f0, type: 3}

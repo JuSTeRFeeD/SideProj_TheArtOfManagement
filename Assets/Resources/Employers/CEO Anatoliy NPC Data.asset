@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CEO Anatoliy NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u0410\u043D\u0430\u0442\u043E\u043B\u0438\u0439"
+  profession: CEO
   icon: {fileID: 21300000, guid: f7e6eece903a0ca449db2a1fea56ea87, type: 3}

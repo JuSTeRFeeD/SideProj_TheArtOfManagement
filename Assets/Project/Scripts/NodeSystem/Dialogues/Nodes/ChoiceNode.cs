@@ -19,8 +19,11 @@ namespace Project.Scripts.NodeSystem.Dialogues.Nodes
         [Output(dynamicPortList = true)] 
         [SerializeField] private List<string> choices = new();
 
+        [SerializeField] private bool cylcledAndRemoveSelected = false;
+        
         public string Question => question;
         public List<string> Choices => choices;
+        public bool CycledAndRemoveSelected => cylcledAndRemoveSelected;
 
         public override object GetValue(NodePort port)
         {
