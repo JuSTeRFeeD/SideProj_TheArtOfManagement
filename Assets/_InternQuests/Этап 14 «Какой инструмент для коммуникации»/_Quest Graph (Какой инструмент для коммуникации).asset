@@ -83,7 +83,7 @@ MonoBehaviour:
   input: {fileID: 0}
   outputSuccess: {fileID: 0}
   outputFail: {fileID: 0}
-  dialogueGraph: {fileID: 11400000, guid: 0ba2a5b11cc99184f85420bacd316361, type: 2}
+  dialogueGraph: {fileID: 11400000, guid: be992ec281d057b4fbc467d8a461b818, type: 2}
   npcData: {fileID: 11400000, guid: 4d107e4eb14d5414cb827656be7482f1, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
