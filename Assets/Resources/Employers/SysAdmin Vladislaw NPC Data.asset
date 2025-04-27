@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SysAdmin Vladislaw NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u0412\u043B\u0430\u0434\u0438\u0441\u043B\u0430\u0432"
+  profession: "\u0421\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440"
   icon: {fileID: 21300000, guid: d6110436dd7a8484e85d398ff436d406, type: 3}

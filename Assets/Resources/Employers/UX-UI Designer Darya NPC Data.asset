@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: UX-UI Designer Darya NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u0414\u0430\u0440\u044C\u044F"
+  profession: "UI/UX \u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440"
   icon: {fileID: 21300000, guid: 29483fbeda7f5e54dabc3306ea0e6f17, type: 3}

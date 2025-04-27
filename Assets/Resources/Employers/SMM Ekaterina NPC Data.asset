@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SMM Ekaterina NPC Data
   m_EditorClassIdentifier: 
   npcName: "\u0415\u043A\u0430\u0442\u0435\u0440\u0438\u043D\u0430"
+  profession: SMM
   icon: {fileID: 21300000, guid: 9765d3e39d39e1b4996440996e3e11dc, type: 3}

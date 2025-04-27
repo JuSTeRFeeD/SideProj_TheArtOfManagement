@@ -73,6 +73,9 @@ namespace Project.Scripts.NodeSystem.Quests
                 
                 _availableQuests.Add(processor);
                 processor.OnQuestComplete += OnQuestCompleted;
+                
+                // TODO: DELETE NEXT LINE!!!
+                processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Project.Scripts.Fame;
 using Project.Scripts.Inventory;
@@ -23,6 +24,9 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private bool _isWaitingChoiceSelect;
         
         public bool IsDialogueActive => _currentDialogueGraph != null;
+        
+        // For ChoiceNode with cycledAndRemoveSelectedChoices = true
+        private Dictionary<ChoiceNode, HashSet<int>> _hideSelectedChoices = new();
 
         private void Awake()
         {
@@ -195,10 +199,21 @@ namespace Project.Scripts.NodeSystem.Dialogues
             var choiceTexts = node.Choices
                 .Select(choice => choice)
                 .ToList();
-            UIDialogue.Instance.ShowChoices(node.Question, choiceTexts, callbackIndex => 
+            _hideSelectedChoices.TryGetValue(node, out var hiddenChoices);
+            UIDialogue.Instance.ShowChoices(node.Question, choiceTexts, hiddenChoices, callbackIndex => 
             {
                 var port = node.GetPort($"choices {callbackIndex}");
                 if (!port.IsConnected) return;
+                
+                if (node.CycledAndRemoveSelected)
+                {
+                    if (!_hideSelectedChoices.ContainsKey(node))
+                    {
+                        _hideSelectedChoices.Add(node, new HashSet<int>());
+                    }
+                    _hideSelectedChoices[node].Add(callbackIndex);
+                }
+                
                 _currentNode = port.Connection.node;
                 _isWaitingChoiceSelect = false;
                 ProcessNode();

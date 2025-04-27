@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: HR Marina Npc Data
   m_EditorClassIdentifier: 
   npcName: "\u041C\u0430\u0440\u0438\u043D\u0430"
+  profession: HR
   icon: {fileID: 21300000, guid: c53b7e2bb3c88204b8a3e0b949cc1060, type: 3}

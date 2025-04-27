@@ -166,8 +166,9 @@ MonoBehaviour:
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: def815ba94092f24a82191b311db90ad, type: 2}
   questName: "SubQuest \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A
-    \u041C\u0430\u0440\u0438\u043D\u0435 Success\n- \u0412\u0435\u0440\u043D\u0438\u0442\u0435\u0441\u044C
-    \u043A \u041C\u0430\u0440\u0438\u043D\u0435"
+    \u041C\u0430\u0440\u0438\u043D\u0435 Success\n- \u0421\u043A\u0430\u0437\u0430\u0442\u044C
+    \u041C\u0430\u0440\u0438\u043D\u0435 \u0447\u0442\u043E \u0432\u044B\u0437\u0432\u0430\u043B
+    \u043C\u0430\u0441\u0442\u0435\u0440\u0430"
 --- !u!114 &-6850106517857168206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_Name: Quest End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2344, y: -56}
+  position: {x: 2632, y: 40}
   ports:
     keys:
     - input
@@ -388,7 +389,7 @@ MonoBehaviour:
   m_Name: End Timer Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: -88}
+  position: {x: 1464, y: 8}
   ports:
     keys:
     - input
@@ -489,7 +490,7 @@ MonoBehaviour:
   m_Name: Quest Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1448, y: -104}
+  position: {x: 1736, y: -8}
   ports:
     keys:
     - input
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Name: Unlock Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1720, y: -88}
+  position: {x: 2008, y: 8}
   ports:
     keys:
     - input
@@ -678,7 +679,7 @@ MonoBehaviour:
   m_Name: Fame
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2088, y: -72}
+  position: {x: 2376, y: 24}
   ports:
     keys:
     - input

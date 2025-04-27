@@ -28,6 +28,9 @@ namespace Project.Scripts.NodeSystem.Dialogues
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private Image speakerIcon;
         [SerializeField] private Image playerSpeakerIcon;
+        [Space]
+        [SerializeField] private Image speakerProfessionWrapperImage;
+        [SerializeField] private TextMeshProUGUI speakerProfessionText;
         
         [Header("Choices")]
         [SerializeField] private CanvasGroup choicesCanvas;
@@ -82,6 +85,19 @@ namespace Project.Scripts.NodeSystem.Dialogues
             PlayerFame.Instance.mainFame.OnChangeEvent -= OnFameChanged;
         }
 
+        private void SetupSpeakerProfession(NpcData npcData)
+        {
+            if (npcData == null)
+            {
+                speakerProfessionWrapperImage.enabled = false;
+                speakerProfessionText.enabled = false;
+                return;
+            }
+            speakerProfessionWrapperImage.enabled = !string.IsNullOrEmpty(npcData.Profession);
+            speakerProfessionText.enabled = !string.IsNullOrEmpty(npcData.Profession);
+            speakerProfessionText.text = npcData.Profession;
+        }
+
         public void StartDialogue(NpcData npcNpcData)
         {
             _npcNpcData = npcNpcData;
@@ -113,11 +129,13 @@ namespace Project.Scripts.NodeSystem.Dialogues
             {
                 speakerIcon.sprite = overrideSpeakerNpcData.Icon;
                 speakerNameText.text = overrideSpeakerNpcData.NpcName;
+                SetupSpeakerProfession(overrideSpeakerNpcData);
             }
             else
             {
                 speakerIcon.sprite = _npcNpcData.Icon;
                 speakerNameText.text = _npcNpcData.NpcName;
+                SetupSpeakerProfession(_npcNpcData);
             }
             
             playerAvatarCanvasGroup.alpha = isPlayerSpeaker ? 1f : 0f;
@@ -130,7 +148,7 @@ namespace Project.Scripts.NodeSystem.Dialogues
             }));
         }
 
-        public void ShowChoices(string question, List<string> choices, Action<int> callback)
+        public void ShowChoices(string question, List<string> choices, HashSet<int> hiddenChoices, Action<int> callback)
         {
             DialogueMoveOnChoicesActive(false);
 
@@ -142,11 +160,13 @@ namespace Project.Scripts.NodeSystem.Dialogues
             
             speakerIcon.sprite = _npcNpcData.Icon;
             speakerNameText.text = _npcNpcData.NpcName;
+            SetupSpeakerProfession(_npcNpcData);
 
             _displayDialogueTextCoroutine = StartCoroutine(DisplayDialogueText(question, () =>
             {
                 for (var index = 0; index < choices.Count; index++)
                 {
+                    if (hiddenChoices != null && hiddenChoices.Contains(index)) continue;
                     var choice = choices[index];
                 
                     var btn = Instantiate(choiceButtonPrefab, choicesContainer);
