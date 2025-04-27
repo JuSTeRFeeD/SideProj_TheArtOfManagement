@@ -30679,7 +30679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230ca80c95f64162a9e6c03148ffca7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   playerInventory: {fileID: 937213250}
   maxActiveQuestsCount: 3
   checkIntervalSeconds: 10

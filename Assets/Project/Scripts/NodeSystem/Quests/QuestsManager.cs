@@ -162,6 +162,8 @@ namespace Project.Scripts.NodeSystem.Quests
             foreach (var processor in processors)
             {
                 if (!processor.IsActive) continue;
+                
+                // Required
                 if (processor.TryGetRequiredQuestItem(out var item))
                 {
                     if (interactablesToGetItem.TryGetValue(item, out var interactable))
@@ -171,6 +173,19 @@ namespace Project.Scripts.NodeSystem.Quests
                     if (interactableDance.TryGetValue(item, out var dance))
                     {
                         dance.SetCanInteract(true);
+                    }
+                }
+                
+                // Failed
+                if (processor.TryGetFailedQuestItem(out var failedItem))
+                {
+                    if (interactablesToGetItem.TryGetValue(failedItem, out var interactable))
+                    {
+                        interactable.SetCanInteract(false);
+                    }
+                    if (interactableDance.TryGetValue(failedItem, out var dance))
+                    {
+                        dance.SetCanInteract(false);
                     }
                 }
             }

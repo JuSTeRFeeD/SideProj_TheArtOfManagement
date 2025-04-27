@@ -73,6 +73,21 @@ namespace Project.Scripts.NodeSystem.Quests
             }
             return itemData;
         }
+        
+        public bool TryGetFailedQuestItem(out ItemData itemData)
+        {
+            itemData = default;
+            foreach (var quest in _quests)
+            {
+                if (quest.isDialogueEnded) continue;
+                if (!quest.questData.ItemInInventory) continue;
+                if (quest.isFailed)
+                {
+                    itemData = quest.questData.ItemInInventory;
+                }
+            }
+            return itemData;
+        }
 
         public string GetQuestDescription()
         {
@@ -253,6 +268,8 @@ namespace Project.Scripts.NodeSystem.Quests
                     dialogueCompanion.RemoveAvailableDialogue(unlockedDialogues.dialogueGraph, this);
                 }
             }
+            
+            OnQuestUpdate?.Invoke();
             
             // To fail connection
             var outputPort = questStartNode.GetOutputPort("outputFail");
