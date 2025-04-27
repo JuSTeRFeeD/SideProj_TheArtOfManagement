@@ -12,6 +12,8 @@ namespace Project.Scripts.NodeSystem.Quests
 {
     public class QuestsManager : MonoBehaviour
     {
+        [SerializeField] private bool debugMode = false;
+        
         [SerializeField] private PlayerInventory playerInventory;
         
         public readonly Dictionary<ItemData, InteractableGetItem> interactablesToGetItem = new();
@@ -37,6 +39,10 @@ namespace Project.Scripts.NodeSystem.Quests
         private void Awake()
         {
             Instance = this;
+#if UNITY_EDITOR
+#else
+            debugMode = false;
+#endif
         }
 
         private void Start()
@@ -73,6 +79,8 @@ namespace Project.Scripts.NodeSystem.Quests
                 
                 _availableQuests.Add(processor);
                 processor.OnQuestComplete += OnQuestCompleted;
+                
+                if (debugMode) processor.Start(playerInventory);
             }
             
             HandleProcessorQuestUpdate();
@@ -90,6 +98,8 @@ namespace Project.Scripts.NodeSystem.Quests
         
         private void Update()
         {
+            if (debugMode) return;
+            
             // Instantly unlock 1 quest
             if (_activeQuestsCount == 0)
             {
