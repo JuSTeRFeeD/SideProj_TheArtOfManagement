@@ -78,13 +78,13 @@ namespace Project.Scripts
             var totalTimeInSeconds = PlayTime.Instance.GetElapsedTime();
             var minutes = Mathf.FloorToInt(totalTimeInSeconds / 60);
             var seconds = Mathf.FloorToInt(totalTimeInSeconds % 60);
-            elapsedTime.text = $"Время прохождения: {minutes:00}:{seconds:00}";
+            elapsedTime.text = $"<b>Время прохождения:</b> {minutes:00}:{seconds:00}";
             
-            rightAnswersMain.text = $"Правильных ответов: {PlayerFame.Instance.mainFame.RightAnswersCount}";
-            wrongAnswersMain.text = $"Неправильных ответов: {PlayerFame.Instance.mainFame.WrongAnswersCount}";
-            rightAnswersIntern.text = $"Правильных ответов стажёру: {PlayerFame.Instance.internFame.RightAnswersCount}";
+            rightAnswersMain.text = $"<b>Правильных ответов:</b> {PlayerFame.Instance.mainFame.RightAnswersCount}";
+            wrongAnswersMain.text = $"<b>Неправильных ответов:</b> {PlayerFame.Instance.mainFame.WrongAnswersCount}";
+            rightAnswersIntern.text = $"<b>Правильных ответов стажёру:</b> {PlayerFame.Instance.internFame.RightAnswersCount}";
             wrongAnswersIntern.text =
-                $"Неправильных ответов стажёру: {PlayerFame.Instance.internFame.WrongAnswersCount}";
+                $"<b>Неправильных ответов стажёру:</b> {PlayerFame.Instance.internFame.WrongAnswersCount}";
 
             var sb = new StringBuilder();
 

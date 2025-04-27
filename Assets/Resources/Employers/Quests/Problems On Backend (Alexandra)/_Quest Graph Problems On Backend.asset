@@ -243,7 +243,7 @@ MonoBehaviour:
   - {fileID: -6341764653857441317}
   - {fileID: 630237419686347145}
   - {fileID: 795725041538923919}
-  isQuestActive: 0
+  isQuestActive: 1
 --- !u!114 &558000362976564919
 MonoBehaviour:
   m_ObjectHideFlags: 0

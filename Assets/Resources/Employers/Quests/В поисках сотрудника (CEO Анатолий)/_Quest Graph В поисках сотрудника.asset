@@ -568,7 +568,7 @@ MonoBehaviour:
   outputFail: {fileID: 0}
   questData: {fileID: 11400000, guid: 58bd5ab480539a344aeccf3373ee4518, type: 2}
   questName: "SubQuest \u041D\u0430\u0439\u0442\u0438 \u043C\u0438\u0445\u0430\u0438\u043B\u0430\n-
-    \u041D\u0430\u0439\u0442\u0438 \u043C\u0438\u0445\u0430\u0438\u043B\u0430"
+    \u041D\u0430\u0439\u0442\u0438 \u041C\u0438\u0445\u0430\u0438\u043B\u0430"
 --- !u!114 &8676178246677296286
 MonoBehaviour:
   m_ObjectHideFlags: 0

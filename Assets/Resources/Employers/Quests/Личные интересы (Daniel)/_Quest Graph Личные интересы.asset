@@ -219,7 +219,6 @@ MonoBehaviour:
   - {fileID: -3104157348090921298}
   - {fileID: -3872274800824377002}
   - {fileID: -7772840209246682756}
-  - {fileID: 5199940253291765392}
   isQuestActive: 1
 --- !u!114 &535250096001651124
 MonoBehaviour:
@@ -246,7 +245,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 5199940253291765392}
+        node: {fileID: 5654235344012110581}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -368,52 +367,6 @@ MonoBehaviour:
     \u041C\u0430\u0440\u0438\u043D\u044B\n- \u0412\u0437\u044F\u0442\u044C \u043A\u0440\u0443\u0436\u043A\u0443
     \u0414\u0430\u043D\u0438\u0438\u043B\u0430 \u0441\u043E \u0441\u0442\u043E\u043B\u0430
     \u041C\u0430\u0440\u0438\u043D\u044B"
---- !u!114 &5199940253291765392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967d632339834646b7d9460a30d191ee, type: 3}
-  m_Name: Show Quest Title
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -344, y: -8}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 5199940253291765392}
-      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 5654235344012110581}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 5199940253291765392}
-      _typeQualifiedName: Project.Scripts.NodeSystem.NodeBase, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 535250096001651124}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  questTitle: "\u041B\u0438\u0447\u043D\u044B\u0435 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u044B"
 --- !u!114 &5654235344012110581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,7 +390,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 5199940253291765392}
+        node: {fileID: 535250096001651124}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
