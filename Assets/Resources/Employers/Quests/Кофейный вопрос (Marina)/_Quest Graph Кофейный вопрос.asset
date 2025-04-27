@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Unlock Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1720, y: -392}
+  position: {x: 1672, y: -376}
   ports:
     keys:
     - input
@@ -24,8 +24,8 @@ MonoBehaviour:
       _node: {fileID: -8245715034626595017}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: outputSuccess
-        node: {fileID: -7151325955370891896}
+      - fieldName: output
+        node: {fileID: 3121809603890920089}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: Quest Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1448, y: -392}
+  position: {x: 1160, y: -392}
   ports:
     keys:
     - input
@@ -135,8 +135,8 @@ MonoBehaviour:
       _node: {fileID: -7151325955370891896}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: output
-        node: {fileID: 3121809603890920089}
+      - fieldName: outputSuccess
+        node: {fileID: -6850106517857168206}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -8245715034626595017}
+        node: {fileID: 3121809603890920089}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 3121809603890920089}
+        node: {fileID: -7151325955370891896}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -214,10 +214,7 @@ MonoBehaviour:
     - _fieldName: outputFail
       _node: {fileID: -6850106517857168206}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: -2396625432778276101}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -251,36 +248,6 @@ MonoBehaviour:
       connections:
       - fieldName: outputFail
         node: {fileID: -2091329530614824711}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
---- !u!114 &-5973931188643395301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac00f5b7f0d6406289e75062ad938c0f, type: 3}
-  m_Name: Quest End
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 2632, y: 40}
-  ports:
-    keys:
-    - input
-    values:
-    - _fieldName: input
-      _node: {fileID: -5973931188643395301}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 3110303843913161272}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -376,49 +343,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   input: {fileID: 0}
---- !u!114 &-2396625432778276101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d2898158b741bc862ba75e52d91ed2, type: 3}
-  m_Name: End Timer Quest
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1464, y: 8}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: -2396625432778276101}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: outputFail
-        node: {fileID: -6850106517857168206}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -2396625432778276101}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: -876936209823246723}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
 --- !u!114 &-2091329530614824711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,63 +401,6 @@ MonoBehaviour:
   outputFail: {fileID: 0}
   dialogueGraph: {fileID: 11400000, guid: 0201d8bb67fa5184fb94b344123759a3, type: 2}
   npcData: {fileID: 11400000, guid: e5406855e432e8440aa64466ac3b35ba, type: 2}
---- !u!114 &-876936209823246723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0514146cec041698d345ffd3aebf575, type: 3}
-  m_Name: Quest Start
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1736, y: -8}
-  ports:
-    keys:
-    - input
-    - outputSuccess
-    - outputFail
-    values:
-    - _fieldName: input
-      _node: {fileID: -876936209823246723}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: -2396625432778276101}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outputSuccess
-      _node: {fileID: -876936209823246723}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 1759487541252832661}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outputFail
-      _node: {fileID: -876936209823246723}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  outputSuccess: {fileID: 0}
-  outputFail: {fileID: 0}
-  questData: {fileID: 11400000, guid: e9d0c0c70f4ea134e95712024bd7cec9, type: 2}
-  questName: "SubQuest \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A
-    \u041C\u0430\u0440\u0438\u043D\u0435 Fail\n- \u0412\u0435\u0440\u043D\u0438\u0442\u0435\u0441\u044C
-    \u043A \u041C\u0430\u0440\u0438\u043D\u0435"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,68 +427,8 @@ MonoBehaviour:
   - {fileID: 3842738081777887782}
   - {fileID: -7151325955370891896}
   - {fileID: -8245715034626595017}
-  - {fileID: 1759487541252832661}
-  - {fileID: -876936209823246723}
   - {fileID: 5270929070341672483}
-  - {fileID: 3110303843913161272}
-  - {fileID: -5973931188643395301}
-  - {fileID: -2396625432778276101}
   isQuestActive: 1
---- !u!114 &1759487541252832661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589c49b4212140bc9f07bd221659cd5b, type: 3}
-  m_Name: Unlock Dialogue
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 2008, y: 8}
-  ports:
-    keys:
-    - input
-    - outputSuccess
-    - outputFail
-    values:
-    - _fieldName: input
-      _node: {fileID: 1759487541252832661}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: outputSuccess
-        node: {fileID: -876936209823246723}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outputSuccess
-      _node: {fileID: 1759487541252832661}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: 3110303843913161272}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outputFail
-      _node: {fileID: 1759487541252832661}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  outputSuccess: {fileID: 0}
-  outputFail: {fileID: 0}
-  dialogueGraph: {fileID: 11400000, guid: 9ab964badd2df6c4ca38bc0a400e72a3, type: 2}
-  npcData: {fileID: 11400000, guid: e5406855e432e8440aa64466ac3b35ba, type: 2}
 --- !u!114 &2841226500936796899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,50 +473,6 @@ MonoBehaviour:
   input: {fileID: 0}
   output: {fileID: 0}
   fameAmount: -1
---- !u!114 &3110303843913161272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4127e216f9d849a3a770ecc6827ad78b, type: 3}
-  m_Name: Fame
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 2376, y: 24}
-  ports:
-    keys:
-    - input
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 3110303843913161272}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: outputSuccess
-        node: {fileID: 1759487541252832661}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 3110303843913161272}
-      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: -5973931188643395301}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: {fileID: 0}
-  output: {fileID: 0}
-  fameAmount: -1
 --- !u!114 &3121809603890920089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +486,7 @@ MonoBehaviour:
   m_Name: End Timer Quest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: -216}
+  position: {x: 1432, y: -360}
   ports:
     keys:
     - input
@@ -734,7 +497,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: outputSuccess
-        node: {fileID: -6850106517857168206}
+        node: {fileID: -7151325955370891896}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -745,7 +508,7 @@ MonoBehaviour:
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -7151325955370891896}
+        node: {fileID: -8245715034626595017}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
