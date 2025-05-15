@@ -1,8 +1,7 @@
 # The Art Of Management
 
-## Скриншоты
-
+## Screenshots
 ![Menu](Screenshots/1.jpg)
-![Screenshot1](Screenshots/2.jgp)
-![Screenshot2](Screenshots/3.jgp)
-![Screenshot3](Screenshots/4.jgp)
+![Screenshot1](Screenshots/2.jpg)
+![Screenshot2](Screenshots/3.jpg)
+![Screenshot3](Screenshots/4.jpg)
