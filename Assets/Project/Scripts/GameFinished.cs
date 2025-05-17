@@ -46,6 +46,8 @@ namespace Project.Scripts
         [SerializeField] private TextMeshProUGUI totalInternQuests;
         [SerializeField] private ResultText[] internFameResultTexts;
 
+        public static bool IsGameFinished { get; private set; } = false;
+        
         private void Start()
         {
             questsManager.AllQuestsCompleted += ShowGameFinished;
@@ -55,6 +57,8 @@ namespace Project.Scripts
             gameFinishedCanvasGroup.alpha = 0;
             menuButton.interactable = false;
             menuButton.onClick.AddListener(ToMainMenu);
+            
+            IsGameFinished = false;
         }
 
         private void ToMainMenu()
@@ -65,6 +69,8 @@ namespace Project.Scripts
         private void ShowGameFinished()
         {
             CalculateScore();
+
+            IsGameFinished = true;
 
             gameFinishedCanvas.enabled = true;
             gameFinishedCanvasGroup

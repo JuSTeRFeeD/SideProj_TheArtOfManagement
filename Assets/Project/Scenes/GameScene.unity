@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 937213250}
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &11161033
 PrefabInstance:
   m_ObjectHideFlags: 0

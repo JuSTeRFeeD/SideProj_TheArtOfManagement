@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Project.Scripts.Inventory;
+using Project.Scripts.NodeSystem;
 using Project.Scripts.NodeSystem.Dialogues;
 using Project.Scripts.NodeSystem.Quests;
 using Project.Scripts.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Project.Scripts.NPC
 {
@@ -28,7 +31,9 @@ namespace Project.Scripts.NPC
         private DialogueCompanion _dialogueCompanion;
         private float _timer = 0f;
 
-        private bool _isFinished = false;
+        private bool _isLastDialogueIntern = false;
+
+        private bool _isAllInternQuestsDone = false;
 
         private void Awake()
         {
@@ -37,9 +42,23 @@ namespace Project.Scripts.NPC
             SetTimer();
         }
 
+        private void Start()
+        {
+            DialogueManager.Instance.OnDialogueEnd.AddListener(OnAnyDialogueEnd);
+        }
+
+        private void OnAnyDialogueEnd(DialogueGraph graph)
+        {
+            if (_isLastDialogueIntern)
+            {
+                _isLastDialogueIntern = false;   
+                SetTimer();
+            }
+        }
+
         private void Update()
         {
-            if (_isFinished) return;
+            if (_isLastDialogueIntern || _isAllInternQuestsDone || GameFinished.IsGameFinished) return;
             
             _timer -= Time.deltaTime;
             if (_timer > 0f) return;
@@ -65,13 +84,13 @@ namespace Project.Scripts.NPC
 
         private void TriggerInternQuest()
         {
-            if (_isFinished) return;
+            if (_isAllInternQuestsDone) return;
             
             QuestGraph questGraph;
             if (_remainingQuests.Count <= 0)
             {
                 questGraph = finalQuestGraph;
-                _isFinished = true;
+                _isAllInternQuestsDone = true;
             }
             else
             {
@@ -87,6 +106,7 @@ namespace Project.Scripts.NPC
             var playerInventory = playerInteractController.GetComponent<PlayerInventory>();
             var processor = QuestsManager.Instance.RegisterInternQuest(questGraph);
             processor.Start(playerInventory);
+            _isLastDialogueIntern = true;
             DialogueManager.Instance.StartDialogue(_dialogueCompanion);
         }
     }

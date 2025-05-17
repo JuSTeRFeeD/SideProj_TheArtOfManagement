@@ -8,6 +8,7 @@ using Project.Scripts.NodeSystem.Dialogues.Nodes;
 using Project.Scripts.NodeSystem.Quests;
 using Project.Scripts.NPC;
 using UnityEngine;
+using UnityEngine.Events;
 using XNode;
 
 namespace Project.Scripts.NodeSystem.Dialogues
@@ -28,6 +29,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
         // For ChoiceNode with cycledAndRemoveSelectedChoices = true
         private Dictionary<ChoiceNode, HashSet<int>> _hideSelectedChoices = new();
 
+        public UnityEvent<DialogueGraph> OnDialogueEnd;
+        
         private void Awake()
         {
             Instance = this;
@@ -234,6 +237,8 @@ namespace Project.Scripts.NodeSystem.Dialogues
         private void EndDialogue()
         {
             if (!_currentDialogueGraph) return;
+            
+            OnDialogueEnd?.Invoke(_currentDialogueGraph);
             
             _currentDialogueGraph = null;
             _currentNode = null;
